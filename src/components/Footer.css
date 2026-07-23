@@ -24,17 +24,21 @@
 .footer__logo {
   display: flex;
   align-items: center;
-  gap: var(--sp-2);
+  line-height: 0;
 }
-.footer__logo-icon {
-  color: var(--color-gold);
-  font-size: 24px;
+
+.footer__logo-img {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  /* blend white bg on light footer surface */
+  mix-blend-mode: multiply;
+  display: block;
+  transition: opacity var(--dur-fast), transform var(--dur-med) var(--ease-out);
 }
-.footer__logo-text {
-  font-family: var(--font-serif);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--color-primary);
+.footer__logo:hover .footer__logo-img {
+  opacity: 0.85;
+  transform: scale(1.02);
 }
 
 .footer__tagline {

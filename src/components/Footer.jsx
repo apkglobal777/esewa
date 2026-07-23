@@ -1,4 +1,5 @@
 import './Footer.css';
+import logoSrc from '../assets/logo.jpg';
 
 const LINKS = {
   Product: ['AI Documents', 'E-Stamping', 'Digital Signatures', 'Consultations', 'Billing'],
@@ -17,9 +18,12 @@ export default function Footer() {
         <div className="footer__top">
           {/* Brand */}
           <div className="footer__brand">
-            <a className="footer__logo" href="#" aria-label="LegalFlow home">
-              <span className="material-symbols-outlined footer__logo-icon">balance</span>
-              <span className="footer__logo-text">LegalFlow</span>
+            <a className="footer__logo" href="#" aria-label="eSewa Legal Services home">
+              <img
+                src={logoSrc}
+                alt="eSewa Legal Services"
+                className="footer__logo-img"
+              />
             </a>
             <p className="text-body-sm footer__tagline">
               Enterprise-grade AI legal services for high-growth teams — built for speed,
@@ -60,7 +64,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="footer__bottom">
           <p className="text-body-sm footer__copy">
-            © {year} LegalFlow AI Technologies. All rights reserved.
+            © {year} eSewa Legal Services. All rights reserved.
           </p>
           <div className="footer__bottom-links">
             <a href="#" className="footer__bottom-link text-body-sm">Privacy</a>

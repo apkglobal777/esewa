@@ -22,19 +22,24 @@
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: var(--sp-2);
   flex-shrink: 0;
+  line-height: 0; /* remove extra space below img */
 }
-.navbar__logo-icon {
-  color: var(--color-gold);
-  font-size: 26px;
+
+.navbar__logo-img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  /* blend white bg away on light navbar surface */
+  mix-blend-mode: multiply;
+  /* slight sharpening: ensure the gold stays vibrant */
+  image-rendering: -webkit-optimize-contrast;
+  transition: opacity var(--dur-fast), transform var(--dur-med) var(--ease-out);
+  display: block;
 }
-.navbar__logo-text {
-  font-family: var(--font-serif);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--color-primary);
-  letter-spacing: -0.01em;
+.navbar__logo:hover .navbar__logo-img {
+  opacity: 0.88;
+  transform: scale(1.03);
 }
 
 /* Desktop links */

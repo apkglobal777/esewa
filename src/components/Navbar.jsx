@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Navbar.css';
+import logoSrc from '../assets/logo.jpg';
 
 const NAV_LINKS = [
   { label: 'Documents',     href: '#services' },
@@ -22,9 +23,12 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
       <div className="container navbar__inner">
         {/* Logo */}
-        <a className="navbar__logo" href="#" aria-label="LegalFlow home">
-          <span className="navbar__logo-icon material-symbols-outlined">balance</span>
-          <span className="navbar__logo-text">LegalFlow</span>
+        <a className="navbar__logo" href="#" aria-label="eSewa Legal Services home">
+          <img
+            src={logoSrc}
+            alt="eSewa Legal Services"
+            className="navbar__logo-img"
+          />
         </a>
 
         {/* Desktop Links */}
