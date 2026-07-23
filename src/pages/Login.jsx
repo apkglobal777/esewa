@@ -256,7 +256,13 @@ export default function Login() {
           {/* Register */}
           <p className="lp__register">
             Don't have an account?{' '}
-            <a href="#" className="lp__reg-link">Create an Account</a>
+            <Link
+              to={role === 'lawyer' ? '/lawyer/onboarding' : '/client/register'}
+              className="lp__reg-link"
+              id="lp-register-link"
+            >
+              {role === 'lawyer' ? 'Register as Lawyer' : 'Create an Account'}
+            </Link>
           </p>
 
           {/* Footer links */}
