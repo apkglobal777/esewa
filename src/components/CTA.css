@@ -1,0 +1,136 @@
+.cta-section {
+  padding: var(--sp-24) 0;
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-12);
+}
+
+/* ── Stats row ── */
+.cta-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+  padding: var(--sp-6) var(--sp-8);
+  background: var(--color-surface-container-lowest);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+@media (min-width: 640px) {
+  .cta-stats { grid-template-columns: repeat(4, 1fr); }
+}
+
+.cta-stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--sp-4) var(--sp-2);
+  border-right: 1px solid var(--color-outline-variant);
+}
+.cta-stats__item:last-child { border-right: none; }
+
+@media (max-width: 639px) {
+  .cta-stats__item:nth-child(2) { border-right: none; }
+  .cta-stats__item:nth-child(3) { border-top: 1px solid var(--color-outline-variant); }
+  .cta-stats__item:nth-child(4) { border-top: 1px solid var(--color-outline-variant); border-right: none; }
+}
+
+.cta-stats__value {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.cta-stats__label {
+  color: var(--color-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── CTA Card ── */
+.cta-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  background: var(--color-primary-container);
+  padding: var(--sp-16) var(--sp-8);
+}
+.cta-card.reveal { transition-delay: var(--delay, 0s); }
+
+/* Dot-grid pattern */
+.cta-card__pattern {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  pointer-events: none;
+}
+.cta-card__dot {
+  width: 2px; height: 2px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  margin: auto;
+}
+
+/* Glow */
+.cta-card__glow {
+  position: absolute;
+  width: 600px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 65%);
+  top: -100px; right: -100px;
+  pointer-events: none;
+}
+
+/* Content */
+.cta-card__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-6);
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.cta-card__headline { color: var(--color-on-primary); }
+.cta-card__sub      { color: rgba(255,255,255,0.8); }
+
+.cta-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-4);
+}
+
+.cta-card__note {
+  color: rgba(255,255,255,0.5);
+}
+
+/* Compliance badges */
+.cta-card__trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  width: 100%;
+}
+
+.cta-trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+}
+.cta-trust-item .material-symbols-outlined {
+  font-size: 16px;
+  color: var(--color-gold-light);
+}

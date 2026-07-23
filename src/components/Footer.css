@@ -1,0 +1,113 @@
+.footer {
+  background: var(--color-surface-container-lowest);
+  border-top: 1px solid var(--color-outline-variant);
+  padding: var(--sp-16) 0 var(--sp-8);
+}
+
+/* ── Top ── */
+.footer__top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-10);
+}
+@media (min-width: 768px) {
+  .footer__top { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; }
+}
+
+/* Brand */
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.footer__logo-icon {
+  color: var(--color-gold);
+  font-size: 24px;
+}
+.footer__logo-text {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.footer__tagline {
+  color: var(--color-on-surface-variant);
+  max-width: 280px;
+  line-height: 1.6;
+}
+
+.footer__social {
+  display: flex;
+  gap: var(--sp-3);
+}
+.footer__social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-outline-variant);
+  color: var(--color-on-surface-variant);
+  transition: all var(--dur-fast);
+}
+.footer__social-btn:hover {
+  background: var(--color-surface-container-low);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.footer__social-btn .material-symbols-outlined { font-size: 18px; }
+
+/* Nav groups */
+.footer__nav-group { display: flex; flex-direction: column; gap: var(--sp-4); }
+.footer__nav-heading {
+  color: var(--color-on-surface);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+.footer__nav-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
+.footer__nav-link {
+  color: var(--color-on-surface-variant);
+  transition: color var(--dur-fast);
+}
+.footer__nav-link:hover { color: var(--color-primary); }
+
+/* Divider */
+.footer__divider {
+  height: 1px;
+  background: var(--color-outline-variant);
+  margin: var(--sp-10) 0 var(--sp-6);
+}
+
+/* ── Bottom ── */
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4);
+  justify-content: space-between;
+}
+
+.footer__copy { color: var(--color-on-surface-variant); }
+
+.footer__bottom-links {
+  display: flex;
+  gap: var(--sp-5);
+}
+.footer__bottom-link {
+  color: var(--color-on-surface-variant);
+  transition: color var(--dur-fast);
+}
+.footer__bottom-link:hover { color: var(--color-primary); }
+
+.footer__compliance {
+  display: flex;
+  gap: var(--sp-2);
+}
