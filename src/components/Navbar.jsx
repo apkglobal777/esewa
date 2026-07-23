@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logoSrc from '../assets/logo.jpg';
 
@@ -42,8 +43,8 @@ export default function Navbar() {
 
         {/* Desktop Actions */}
         <div className="navbar__actions">
-          <a href="#" className="btn btn-outline btn-sm" id="nav-signin-btn">Sign In</a>
-          <a href="#" className="btn btn-gold btn-sm" id="nav-cta-btn">Get Started</a>
+          <Link to="/login" className="btn btn-outline btn-sm" id="nav-signin-btn">Sign In</Link>
+          <Link to="/login" className="btn btn-gold btn-sm"    id="nav-cta-btn">Get Started</Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -77,8 +78,8 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="navbar__mobile-actions">
-            <a href="#" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>Sign In</a>
-            <a href="#" className="btn btn-gold"    style={{ width: '100%', justifyContent: 'center' }}>Get Started</a>
+            <Link to="/login" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>Sign In</Link>
+            <Link to="/login" className="btn btn-gold"    style={{ width: '100%', justifyContent: 'center' }}>Get Started</Link>
           </div>
         </div>
       )}

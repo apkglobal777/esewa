@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './Hero.css';
 
 const heroMockup = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU9tSq5Q9sIv3DK4CD18x1oNixFygvR8N2p54KwMWswcjyWQcNgnLsBZEQrJvQPFG5pERsx1A9U40ej2Px1FrHjpvjwhIeYScI3MiPItFhX082qqpnOBq6jQWoE57DuCRA7fRihLiCKyApUUxnoNf09KlAla6oTrOp2TAUB4vV_PHLKgbWWqzF7kk0_oYXdqXHGPPLWR4Ob5LPaKmmV9bWdNvYlIHiMAO0iGfrsOWlnfFxnlIJdTrwol6_TOFnBua768t0QlVai0M';
@@ -44,9 +45,9 @@ export default function Hero() {
           </p>
 
           <div className="hero__actions">
-            <a href="#services" className="btn btn-gold btn-lg" id="hero-cta-primary">
+            <Link to="/login" className="btn btn-gold btn-lg" id="hero-cta-primary">
               Get Started Free
-            </a>
+            </Link>
             <a href="#how-it-works" className="btn btn-outline btn-lg" id="hero-cta-demo">
               <span className="material-symbols-outlined">play_circle</span>
               View Platform Demo
