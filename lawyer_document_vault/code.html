@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>eSewa Legal | Document Vault</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #E5E7EB;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1D5DB;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9CA3AF;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e1e8fd",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "outline": "#757684",
+                        "inverse-primary": "#b8c4ff",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#001a42",
+                        "on-secondary-container": "#fefcff",
+                        "outline-variant": "#c4c5d5",
+                        "on-error-container": "#93000a",
+                        "secondary": "#0051d5",
+                        "surface-bright": "#f9f9ff",
+                        "on-background": "#141b2b",
+                        "inverse-surface": "#293040",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#141b2b",
+                        "primary-container": "#1e40af",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#173bab",
+                        "surface": "#f9f9ff",
+                        "primary-fixed": "#dde1ff",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f1f3ff",
+                        "on-primary-container": "#a8b8ff",
+                        "secondary-container": "#316bf3",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-secondary-fixed": "#00174b",
+                        "tertiary-fixed": "#d8e2ff",
+                        "primary": "#00288e",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#dce2f7",
+                        "surface-container": "#e9edff",
+                        "inverse-on-surface": "#edf0ff",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "tertiary": "#003272",
+                        "tertiary-container": "#00489e",
+                        "surface-dim": "#d3daef",
+                        "on-primary-fixed": "#001453",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#444653",
+                        "on-tertiary-container": "#9cbbff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#dce2f7",
+                        "surface-tint": "#3755c3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "stack-xs": "4px",
+                        "stack-lg": "24px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "stack-xl": "48px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-surface overflow-x-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col py-stack-lg z-50">
+<div class="px-6 mb-stack-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">eSewa Legal</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Professional Suite</p>
+</div>
+<nav class="flex-grow">
+<ul class="space-y-1 px-4">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-body-md">Case Files</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-primary dark:border-primary-fixed-dim bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-body-md">Documents</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md">Billings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-lg font-label-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity mb-stack-lg">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                New Consultation
+            </button>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-md">Support</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md">Sign Out</span>
+</a>
+</li>
+</ul>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-[calc(100%-16rem)] px-margin-desktop h-16 ml-64 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline fixed top-0 z-40">
+<div class="flex items-center gap-gutter flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none font-body-sm" placeholder="Search case files, templates..." type="text"/>
+</div>
+<nav class="hidden md:flex gap-6 ml-6">
+<a class="text-on-surface-variant hover:text-primary transition-all font-label-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-all font-label-md" href="#">Calendar</a>
+<a class="text-on-surface-variant hover:text-primary transition-all font-label-md" href="#">Tasks</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary font-label-md px-4 py-2 rounded-lg hover:opacity-90 active:scale-95 transition-all">
+                Create New Case
+            </button>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A sharp, professional headshot of a senior legal partner in a tailored navy blue suit against a clean, architectural office background. The lighting is bright and corporate, reflecting a high-trust, premium legal environment consistent with the eSewa Legal brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEczAg_Ov5iwnI0eJ81UPkcD0fuylIlOAgjsYuBTElk4wc19aS8rYc6P6k2cjP2FeWxV4Itesm02eqYxggRhHtdc1P0agskA2HcbvW_PCP9QaXIfnVWR0YTH_8Zf7PSf19eDHcaINT-FIBy06tYQoN_Yav7WNXt3_Ax2l8zh6aOcSrIpD5uE863nZvfCpR7dDK_opGVNgsAmax3R6lfpqoLMQ0f4moH227j3ABW6W3kWLuDqxHoEiUhz5gNab6Pm_uPpHOpbZ4cys"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-margin-desktop pb-stack-xl">
+<!-- Header & Action Row -->
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-sm mb-2">
+<a class="hover:text-primary" href="#">eSewa Legal</a>
+<span class="material-symbols-outlined text-[12px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-bold">Document Vault</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg">Document Vault</h2>
+<p class="text-on-surface-variant mt-1">Manage and secure your legal documentation.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 border border-outline-variant bg-surface-container-lowest text-on-surface font-label-md px-4 py-2.5 rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+                    Generate Document
+                </button>
+<button class="flex items-center gap-2 bg-primary text-on-primary font-label-md px-5 py-2.5 rounded-lg hover:opacity-90 transition-opacity shadow-sm">
+<span class="material-symbols-outlined" data-icon="upload">upload</span>
+                    Quick Upload
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="bento-grid">
+<!-- Folder Shortcuts (Top Row) -->
+<div class="col-span-3 glass-card rounded-xl p-stack-md hover:border-primary transition-all cursor-pointer group">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-primary-container/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="folder" style="font-variation-settings: 'FILL' 1;">folder</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="more_vert">more_vert</span>
+</div>
+<h3 class="font-label-md text-on-surface mb-1">Case Documents</h3>
+<div class="flex justify-between items-center">
+<p class="text-on-surface-variant font-label-sm">1,240 Files</p>
+<span class="text-primary font-label-sm">4.2 GB</span>
+</div>
+</div>
+<div class="col-span-3 glass-card rounded-xl p-stack-md hover:border-primary transition-all cursor-pointer group">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-secondary-container/10 rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="file_copy" style="font-variation-settings: 'FILL' 1;">file_copy</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-secondary transition-colors" data-icon="more_vert">more_vert</span>
+</div>
+<h3 class="font-label-md text-on-surface mb-1">Templates</h3>
+<div class="flex justify-between items-center">
+<p class="text-on-surface-variant font-label-sm">86 Files</p>
+<span class="text-secondary font-label-sm">120 MB</span>
+</div>
+</div>
+<div class="col-span-3 glass-card rounded-xl p-stack-md hover:border-primary transition-all cursor-pointer group">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-tertiary-container/10 rounded-lg flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-tertiary transition-colors" data-icon="more_vert">more_vert</span>
+</div>
+<h3 class="font-label-md text-on-surface mb-1">Signed Affidavits</h3>
+<div class="flex justify-between items-center">
+<p class="text-on-surface-variant font-label-sm">342 Files</p>
+<span class="text-tertiary font-label-sm">850 MB</span>
+</div>
+</div>
+<div class="col-span-3 glass-card rounded-xl p-stack-md hover:border-primary transition-all cursor-pointer group">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-error-container/20 rounded-lg flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="note_alt" style="font-variation-settings: 'FILL' 1;">note_alt</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-error transition-colors" data-icon="more_vert">more_vert</span>
+</div>
+<h3 class="font-label-md text-on-surface mb-1">Research Notes</h3>
+<div class="flex justify-between items-center">
+<p class="text-on-surface-variant font-label-sm">158 Files</p>
+<span class="text-error font-label-sm">45 MB</span>
+</div>
+</div>
+<!-- List View (Central Component) -->
+<div class="col-span-9 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col">
+<div class="px-stack-lg py-4 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<div class="flex items-center gap-4">
+<h3 class="font-label-md text-on-surface">Recent Files</h3>
+<div class="flex gap-1 bg-surface-container-low p-1 rounded-lg">
+<button class="p-1.5 rounded-md bg-surface-container-lowest shadow-sm"><span class="material-symbols-outlined text-[18px]" data-icon="list">list</span></button>
+<button class="p-1.5 rounded-md text-on-surface-variant hover:bg-surface-container-lowest"><span class="material-symbols-outlined text-[18px]" data-icon="grid_view">grid_view</span></button>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-label-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+                            Filter
+                        </button>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-label-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="sort">sort</span>
+                            Sort
+                        </button>
+</div>
+</div>
+<div class="flex-grow overflow-auto min-h-[480px]">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-low/80 backdrop-blur z-10 border-b border-outline-variant">
+<tr>
+<th class="px-6 py-3 font-label-sm text-on-surface-variant uppercase tracking-wider">Name</th>
+<th class="px-6 py-3 font-label-sm text-on-surface-variant uppercase tracking-wider">Date Modified</th>
+<th class="px-6 py-3 font-label-sm text-on-surface-variant uppercase tracking-wider">Related Case</th>
+<th class="px-6 py-3 font-label-sm text-on-surface-variant uppercase tracking-wider">Type</th>
+<th class="px-6 py-3 font-label-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<div>
+<p class="font-label-md text-on-surface group-hover:text-primary">Client_Contract_Final.pdf</p>
+<p class="text-xs text-on-surface-variant">2.4 MB</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">Oct 12, 2023 · 14:20</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg bg-primary-container/10 text-primary text-[11px] font-bold uppercase tracking-tight">Case #4412-A</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded-md text-[11px] font-semibold">LEGAL PDF</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-primary/10 rounded-full text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error" data-icon="picture_as_pdf">picture_as_pdf</span>
+<div>
+<p class="font-label-md text-on-surface group-hover:text-primary">Affidavit_Smith_Witness.pdf</p>
+<p class="text-xs text-on-surface-variant">890 KB</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">Oct 11, 2023 · 09:15</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg bg-secondary-container/10 text-secondary text-[11px] font-bold uppercase tracking-tight">Smith vs. Dept</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded-md text-[11px] font-semibold">SIGNED DOC</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-primary/10 rounded-full text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="article">article</span>
+<div>
+<p class="font-label-md text-on-surface group-hover:text-primary">ND_Template_Enterprise.docx</p>
+<p class="text-xs text-on-surface-variant">45 KB</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">Oct 10, 2023 · 16:45</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant italic">—</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded-md text-[11px] font-semibold">WORD TEMPLATE</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-primary/10 rounded-full text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="image">image</span>
+<div>
+<p class="font-label-md text-on-surface group-hover:text-primary">Evidence_Photo_004.jpg</p>
+<p class="text-xs text-on-surface-variant">5.1 MB</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">Oct 09, 2023 · 11:30</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg bg-primary-container/10 text-primary text-[11px] font-bold uppercase tracking-tight">Case #8821-B</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded-md text-[11px] font-semibold">IMAGE</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-primary/10 rounded-full text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-outline-variant bg-surface-bright flex justify-between items-center font-label-sm">
+<p class="text-on-surface-variant">Showing 4 of 1,826 files</p>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 border border-outline-variant rounded-md hover:bg-surface-container-low disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1.5 border border-outline-variant rounded-md hover:bg-surface-container-low">Next</button>
+</div>
+</div>
+</div>
+<!-- Side Bento Column -->
+<div class="col-span-3 space-y-gutter">
+<!-- Quick Upload Zone -->
+<div class="bg-surface-container-low rounded-xl border-2 border-dashed border-outline-variant p-stack-lg text-center group hover:border-primary hover:bg-surface-container-high transition-all cursor-pointer">
+<div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<h4 class="font-label-md text-on-surface mb-2">Drop files to upload</h4>
+<p class="text-xs text-on-surface-variant mb-6 px-4">Support for PDF, DOCX, and JPG up to 50MB</p>
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">Browse Files</button>
+</div>
+<!-- Storage Usage Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-stack-lg">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-label-md text-on-surface">Storage Vault</h4>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="info">info</span>
+</div>
+<div class="w-full bg-surface-container-low h-2.5 rounded-full overflow-hidden mb-2">
+<div class="bg-primary h-full w-[65%] rounded-full"></div>
+</div>
+<div class="flex justify-between font-label-sm mb-6">
+<span class="text-on-surface-variant">6.5 GB of 10 GB used</span>
+<span class="text-primary">65%</span>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="flex-grow text-on-surface-variant font-label-sm">Case Files</span>
+<span class="font-label-sm">4.2 GB</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="flex-grow text-on-surface-variant font-label-sm">Templates</span>
+<span class="font-label-sm">1.8 GB</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="flex-grow text-on-surface-variant font-label-sm">Other</span>
+<span class="font-label-sm">0.5 GB</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 border border-outline-variant text-on-surface font-label-sm rounded-lg hover:bg-surface-container-low transition-colors">Manage Storage</button>
+</div>
+<!-- Trust Indicator -->
+<div class="bg-primary/5 rounded-xl border border-primary/10 p-stack-md flex items-start gap-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</div>
+<div>
+<h4 class="font-label-sm text-primary">AES-256 Encrypted</h4>
+<p class="text-[11px] leading-tight text-on-surface-variant mt-1">All files are end-to-end encrypted and compliant with global legal security standards.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Context Menu or Modals (Hidden by default) -->
+<div class="fixed bottom-8 right-8 w-80 glass-card rounded-xl p-4 shadow-xl translate-y-[200%] transition-transform duration-500 z-50" id="upload-progress">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="sync">sync</span>
+                Uploading 1 file...
+            </span>
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[18px]" data-icon="close">close</span></button>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[45%] rounded-full animate-pulse"></div>
+</div>
+</div>
+<script>
+        // Simple micro-interaction for the upload simulation
+        document.querySelector('button:contains("Quick Upload")')?.addEventListener('click', () => {
+            const progress = document.getElementById('upload-progress');
+            progress.classList.remove('translate-y-[200%]');
+            setTimeout(() => {
+                progress.classList.add('translate-y-[200%]');
+            }, 5000);
+        });
+
+        // Add specific handling for the text selector since :contains is not standard vanilla CSS
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.textContent.includes('Quick Upload')) {
+                btn.onclick = () => {
+                   const progress = document.getElementById('upload-progress');
+                   progress.classList.remove('translate-y-[200%]');
+                   setTimeout(() => { progress.classList.add('translate-y-[200%]'); }, 4000);
+                }
+            }
+        });
+    </script>
+</body></html>
