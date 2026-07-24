@@ -1,0 +1,104 @@
+Admin Module  
+The Admin Module provides centralized control over the e-Sahayak platform by 
+managing users, lawyers, legal documents, compliance, and system operations. 
+It ensures secure, efficient, and regulation-compliant platform management. 
+ 
+ 
+Lawyer Verification 
+The system shall allow the administrator to verify advocate registrations by validating 
+Bar Council enrollment numbers, identity documents, and professional credentials. 
+The administrator shall approve, reject, activate, or suspend lawyer accounts. 
+ 
+User Management 
+The system shall enable the administrator to manage registered users by viewing user 
+information, updating profiles, blocking or unblocking accounts, and resolving 
+complaints. 
+ 
+Document Template Management 
+The system shall allow the administrator to create, update, categorize, and 
+delete standardized legal document templates such as Rent Agreements, 
+NDAs, Affidavits, and other legal forms. 
+ 
+Compliance Monitoring 
+The system shall ensure compliance with BCI regulations by reviewing lawyer 
+profiles and removing unauthorized or promotional content. Only permitted 
+professional information shall be displayed. 
+ 
+Directory Management 
+The system shall maintain a neutral lawyer directory organized alphabetically or 
+geographically without rankings, reviews, ratings, sponsored listings, or AI-
+based recommendations. 
+ 
+Content Management 
+The system shall enable the administrator to publish legal awareness articles, 
+manage FAQs, upload government notifications, and moderate informational 
+content. 
+ 
+Platform Analytics 
+The system shall generate reports on registered users, verified lawyers, 
+generated legal documents, active subscriptions, and platform usage. 
+ 
+Support and Complaint Management 
+The system shall allow the administrator to manage support tickets, assign 
+
+issues, monitor complaint status, and ensure timely resolution. 
+ 
+Subscription and Payment Management 
+The system shall manage software subscriptions, generate invoices, monitor payment 
+records, and ensure no commission is charged on lawyer consultation fees. 
+ 
+Audit and Activity Logging 
+The system shall maintain audit logs for user logins, profile updates, document 
+modifications, and administrative activities to improve security and accountability. 
+ 
+Admin Module Workflow Diagram 
+ 
+                         ADMIN MODULE WORKFLOW 
+ 
+                    ┌──────────────────────────┐ 
+                    │      Admin Login         │ 
+                    └────────────┬─────────────┘ 
+                                 │ 
+                                 ▼ 
+                    ┌──────────────────────────┐ 
+                    │    Admin Dashboard       │ 
+                    └────────────┬─────────────┘ 
+                                 │ 
+        ┌────────────────────────┼─────────────────────────┐ 
+        │                        │                         │ 
+        ▼                        ▼                         ▼ 
+┌─────────────────┐     ┌─────────────────┐      ┌──────────────────┐ 
+│ Lawyer          │     │ User            │      │ Document         │ 
+│ Verification    │     │ Management      │      │ Template Mgmt    │ 
+└────────┬────────┘     └────────┬────────┘      └────────┬─────────┘ 
+         │                       │                        │ 
+         ▼                       ▼                        ▼ 
+ Verify Enrollment      Manage Users            Add/Edit/Delete 
+ Verify Documents       Block/Unblock           Categorize Templates 
+ Approve/Reject         Handle Complaints       Update Templates 
+ 
+                                 │ 
+                                 ▼ 
+                    Compliance Monitoring 
+                                 │ 
+                                 ▼ 
+                    Directory Management 
+                                 │ 
+                                 ▼ 
+                     Content Management 
+                                 │ 
+                                 ▼ 
+                      Platform Analytics 
+                                 │ 
+                                 ▼ 
+                  Support & Complaint Management 
+                                 │ 
+                                 ▼ 
+                Subscription & Payment Management 
+                                 │ 
+                                 ▼ 
+                   Audit & Activity Logging 
+ 
+
+ 
+

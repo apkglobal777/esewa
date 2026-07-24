@@ -55,7 +55,7 @@ export default function CTA() {
               Ready to Modernize Your Legal Infrastructure?
             </h2>
             <p className="text-body-lg cta-card__sub">
-              Join over 5,000 legal firms and enterprise teams using LegalFlow to secure their future.
+              Join over 5,000 legal firms and enterprise teams using eSewa to secure their future.
             </p>
 
             <div className="cta-card__actions">

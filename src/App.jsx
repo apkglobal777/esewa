@@ -8,8 +8,10 @@ import HowItWorks      from './components/HowItWorks';
 import CTA             from './components/CTA';
 import Footer          from './components/Footer';
 import Login           from './pages/Login';
+import ClientRegister  from './pages/ClientRegister';
 import LawyerOnboarding from './pages/LawyerOnboarding';
 import LawyerStatus    from './pages/LawyerStatus';
+import NotFound        from './pages/NotFound';
 
 /* ── Landing page layout ── */
 function LandingPage() {
@@ -33,8 +35,10 @@ export default function App() {
     <Routes>
       <Route path="/"                    element={<LandingPage />} />
       <Route path="/login"               element={<Login />} />
+      <Route path="/client/register"     element={<ClientRegister />} />
       <Route path="/lawyer/onboarding"   element={<LawyerOnboarding />} />
       <Route path="/lawyer/status"       element={<LawyerStatus />} />
+      <Route path="*"                    element={<NotFound />} />
     </Routes>
   );
 }

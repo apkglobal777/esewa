@@ -83,11 +83,11 @@ export default function Hero() {
               {/* Browser chrome */}
               <div className="hero__mockup-chrome">
                 <span /><span /><span />
-                <div className="hero__mockup-url">legalflow.ai/dashboard</div>
+                <div className="hero__mockup-url">esewa.in/dashboard</div>
               </div>
               <img
                 src={heroMockup}
-                alt="LegalFlow AI dashboard showing case files, AI analysis panels, and digital document previews"
+                alt="eSewa Legal Services dashboard showing case files, AI analysis panels, and digital document previews"
                 className="hero__mockup-img"
                 onError={(e) => {
                   e.target.src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU9tSq5Q9sIv3DK4CD18x1oNixFygvR8N2p54KwMWswcjyWQcNgnLsBZEQrJvQPFG5pERsx1A9U40ej2Px1FrHjpvjwhIeYScI3MiPItFhX082qqpnOBq6jQWoE57DuCRA7fRihLiCKyApUUxnoNf09KlAla6oTrOp2TAUB4vV_PHLKgbWWqzF7kk0_oYXdqXHGPPLWR4Ob5LPaKmmV9bWdNvYlIHiMAO0iGfrsOWlnfFxnlIJdTrwol6_TOFnBua768t0QlVai0M';

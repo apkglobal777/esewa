@@ -1,0 +1,1340 @@
+Software Requirements
+Speciﬁcation
+User Module — eSahayak: AI-
+Powered Legal Assistance Platform
+Cover Page
+Field Detail
+Document Title
+eSahayak — Software
+Requirements Speciﬁcation:
+User Module
+Document Type Detailed Functional SRS (Single
+Role)
+Phase Detailed Requirement
+Speciﬁcation
+Version 2.1
+Date 21 July 2026
+
+Field Detail
+Prepared By Business Analysis Function
+Classiﬁcation Internal / Academic Reference
+Reference
+System
+esahayak.io (studied as a live
+platform, July 2026)
+Parent
+Document
+eSahayak — Master Software
+Requirements Speciﬁcation
+Standards
+Referenced
+IEEE Std 830-1998;
+ISO/IEC/IEEE 29148:2018
+Features already present on the live platform are
+marked Existing; recommendations arising from this
+analysis are marked Future Enhancement or
+Proposed Feature, and are never presented as though
+they already exist.
+This document assumes the reader has access to
+the Master SRS. Details that apply system-wide —
+stakeholders, the Advocate and Admin roles, and
+general system context — are deﬁned there and are
+referenced here rather than repeated.
+Table of Contents
+
+1. Introduction
+2. Purpose
+3. Scope
+4. User Role Overview
+5. Objectives of the User Module
+6. User Responsibilities
+7. User Permissions
+8. User Workﬂow
+9. User Journey
+10. Detailed Functional Requirements
+11. Use Case Diagram (User Only)
+12. Detailed Use Case Speciﬁcations
+13. Functional Requirements (Numbered)
+14. Non-Functional Requirements (User Module)
+15. Assumptions
+16. Constraints
+17. Future Enhancements
+18. Conclusion
+1. Introduction
+Of the three roles that make up eSahayak, the User is
+by far the busiest one — every document generated,
+every stamp purchased, and every consultation
+booked begins with a user acting on their own behalf.
+
+This document sets out to describe that role in full,
+moving well beyond the brief summary given in the
+Master SRS and working through each feature the
+way a requirements engineer would before handing it
+to a development team.
+Where the Master SRS answers "what does the
+platform do, broadly speaking," this document
+answers a narrower but more demanding question:
+"what, precisely, must the User-facing part of the
+system do, and under what conditions might it fail?"
+Each feature below is examined against a consistent
+set of criteria — purpose, preconditions, workﬂow,
+governing business rules, expected inputs and
+outputs, likely exceptions, validation logic, and both a
+success and a failure scenario — so that the
+speciﬁcation can be used directly as a basis for
+design and test-case creation.
+2. Purpose
+This SRS aims to remove ambiguity from the User-
+facing functionality of eSahayak. Concretely, it sets
+out to:
+Document every feature available to a registered
+User in enough detail that a developer could
+implement it without needing to guess at edge
+cases.
+
+Capture the rules that govern each feature, along
+with the conditions under which it succeeds or
+fails.
+Provide formally structured use cases that map
+cleanly onto test scenarios.
+Assign a stable, numbered identiﬁer (FR-U-xxx) to
+each requirement so that it can be traced from
+speciﬁcation through to implementation and
+testing.
+3. Scope
+This document is conﬁned entirely to the User role. It
+covers registration, login, the dashboard, proﬁle
+management, the AI legal assistant, document
+generation, e-stamp purchase, digital signature,
+consultation booking, government certiﬁcate services,
+property record retrieval, payments, notiﬁcations, and
+logout — every touchpoint a citizen or business user
+has with the platform.
+It does not extend into Advocate or Admin
+functionality, nor does it revisit architecture, database
+design, or infrastructure, all of which remain the
+responsibility of the Master SRS or future documents
+dedicated to those areas.
+4. User Role Overview
+
+A User, in the context of eSahayak, is simply a citizen
+or a business representative who has created an
+account to make use of the platform's services. There
+is no assumed legal background — quite the opposite,
+in fact, since the platform's entire value proposition
+rests on being usable by someone with no prior
+experience of legal drafting or stamp procedures.
+Registration is self-service and veriﬁed by OTP;
+certain actions, most notably e-signing, additionally
+require Aadhaar veriﬁcation before they can be
+completed. Once veriﬁed, a User operates from a
+personal dashboard that acts as the entry point to
+every service the platform offers. Administrative
+functions and advocate-side tools sit entirely outside
+what a User can see or do, and are addressed
+separately in their own respective documents.
+5. Objectives of the User Module
+The requirements captured in this document are
+ultimately in service of a handful of underlying goals:
+Making account creation quick enough that a ﬁrst-
+time visitor does not abandon the process
+partway through.
+Allowing someone with no legal training to
+produce a document that is actually usable.
+
+Keeping the full document lifecycle — draft,
+stamp, sign — inside a single platform rather than
+scattering it across separate services.
+Providing a route to real legal advice for situations
+too complex for self-service drafting.
+Extending the same convenience to government-
+adjacent tasks, such as certiﬁcates and property
+records, that would otherwise require an in-person
+visit.
+Keeping the user informed at each step, rather
+than leaving them to check back manually.
+Making sure every paid transaction is clear,
+secure, and properly recorded.
+6. User Responsibilities
+A platform like this only works if users hold up their
+end of the process. Speciﬁcally, a User is expected to:
+Provide accurate details during registration and
+while using any service — a mistyped date or
+address can undermine an otherwise correctly
+drafted document.
+Review a generated document carefully before
+proceeding to stamping or signing, rather than
+treating the AI-assisted draft as automatically
+ﬁnal.
+
+Complete Aadhaar/PAN veriﬁcation honestly
+where it is required for stamping or signing.
+Use only the platform's supported payment
+methods.
+Keep login credentials to themselves and report
+anything that looks like unauthorised account
+activity.
+Treat the AI assistant's suggestions as a starting
+point, not as a replacement for professional
+advice where a matter is genuinely complicated.
+7. User Permissions
+Within the boundaries of their own account, a User
+can register, log in and out, and manage their proﬁle
+and KYC details; interact with the AI assistant for
+drafting help; browse the template library and
+generate documents; purchase e-stamp paper and
+complete e-signature for documents they are party to;
+book, reschedule, or cancel consultations; request
+certiﬁcates and property records; and handle
+payments, invoices, and refund requests.
+What a User cannot do is just as important: they have
+no visibility into another user's documents or data, no
+ability to alter platform templates or pricing, and no
+access to any Admin or Advocate-facing screen.
+
+8. User Workﬂow
+Stripped down to its essentials, a typical User's path
+through the platform follows a fairly consistent
+pattern, regardless of which service they are using:
+Visitor
+   │
+   ▼
+Registration
+   │
+   ▼
+Login
+   │
+   ▼
+Dashboard
+   │
+   ▼
+Select Service
+   │
+   ▼
+Fill Details
+   │
+   ▼
+Payment
+   │
+   ▼
+Document Generation
+   │
+   ▼
+Download
+
+This is the shared backbone of every service on the
+platform. What changes from one service to another
+is what happens between "Document Generation" and
+"Download" — a rent agreement, for example, typically
+inserts an e-stamp step and a digital-signature step in
+between, while a property-record request skips
+document generation altogether and goes straight
+from payment to fulﬁlment.
+9. User Journey
+Zooming out from the workﬂow diagram, a more
+narrative account of a typical User's experience looks
+something like this:
+A visitor arrives at eSahayak, usually because they
+need something speciﬁc — a rent agreement, say —
+and have searched for a way to get it done online
+rather than through a lawyer's oﬃce. They register
+using their mobile number, conﬁrm the OTP, and land
+on their dashboard for the ﬁrst time. From there, they
+either browse the relevant category or describe their
+need to the AI assistant, which points them toward
+the right template.
+Filling in the guided form takes a few minutes, and the
+platform shows a live preview as details are entered,
+which makes it easier to catch mistakes early. Once
+satisﬁed, the user pays — the price breakdown,
+including any applicable stamp duty, is shown clearly
+
+before payment is requested — and the system
+proceeds to generate the ﬁnal document. If stamping
+and signing are required, those steps follow
+automatically, with the user receiving a notiﬁcation at
+each milestone: payment conﬁrmed, stamp issued,
+signature pending, signature complete. At the end of
+it, the user downloads a ﬁnished, legally executed
+document, having never left their browser.
+From there, the relationship with the platform does
+not necessarily end. A user might return later to book
+a consultation, generate a second document, or —
+once the proposed case-tracking feature exists —
+check in on the progress of an ongoing matter without
+having to remember which service handled which part
+of it.
+10. Detailed Functional
+Requirements
+The sections that follow work through each User-
+facing feature individually. Each one is examined
+under the same set of headings — purpose,
+description, preconditions, workﬂow, business rules,
+inputs, outputs, exceptions, validation rules, success
+and failure scenarios, and user interaction — to keep
+the speciﬁcation consistent and easy to navigate.
+
+10.1 Registration (Existing)
+Purpose. To let a new visitor turn into a veriﬁed User
+with minimal friction.
+Description. Registration is handled through a mobile
+number or email address, conﬁrmed by a one-time
+password. There is no separate approval step —
+veriﬁcation of the OTP is suﬃcient to create the
+account.
+Preconditions. The visitor has access to a valid
+mobile number or email that is not already tied to an
+existing account.
+Workﬂow. The visitor selects "Create free account"
+and enters their mobile number or email. The system
+sends an OTP, which the visitor enters; once veriﬁed,
+the account is created and the visitor is prompted to
+ﬁll in basic proﬁle details such as their name.
+Business Rules. Each mobile number or email can be
+linked to only one account. An OTP is valid for a
+limited window and a limited number of attempts. It is
+worth noting that registration by itself does not
+amount to KYC — Aadhaar and PAN veriﬁcation
+happen separately, later, when a speciﬁc service such
+as e-signing requires them.
+Inputs. Mobile number or email; OTP; name and other
+basic proﬁle details.
+
+Outputs. A new, veriﬁed account, along with a
+conﬁrmation notiﬁcation.
+Exceptions. The OTP is not received, expires before it
+is entered, or is entered incorrectly more times than
+allowed; the chosen identiﬁer turns out to already be
+registered.
+Validation Rules. The mobile number must be a valid
+10-digit Indian number; the email must follow
+standard email formatting; the OTP entered must
+match what was issued for that session and must still
+be within its validity window.
+Success Scenario. The visitor receives the OTP
+promptly, enters it correctly, and is taken straight to
+the dashboard.
+Failure Scenario. After three incorrect OTP attempts,
+the system locks further attempts for a short
+cooldown period and displays an appropriate
+message.
+User Interaction. A short, mobile-friendly form, with
+the OTP ﬁeld prominent and a resend option that
+becomes available after a brief countdown.
+10.2 Login (Existing)
+
+Purpose. To let a returning User securely access their
+account.
+Description. Login mirrors registration in spirit —
+mobile number or email, conﬁrmed by OTP (or
+password, depending on conﬁguration) — and results
+in an authenticated session.
+Preconditions. The User already holds a registered
+and veriﬁed account.
+Workﬂow. The User enters their registered identiﬁer,
+receives (or is prompted for) their OTP or password,
+and is redirected to the dashboard once veriﬁed.
+Business Rules. Repeated failed attempts trigger a
+temporary lockout, and a session persists until the
+User either logs out deliberately or remains inactive
+long enough for it to expire.
+Inputs. Registered mobile number or email; OTP or
+password.
+Outputs. An active session and access to the
+dashboard.
+Exceptions. The identiﬁer is not recognised; the OTP
+or password is incorrect; the account is temporarily
+locked following repeated failures.
+Validation Rules. The identiﬁer must correspond to an
+existing account, and the OTP or password must be
+both correct and unexpired.
+
+Success Scenario. Correct credentials lead directly to
+the dashboard without delay.
+Failure Scenario. After several incorrect attempts, the
+account enters a temporary lockout, and the User is
+directed to either wait or use account recovery.
+User Interaction. A deliberately minimal login screen;
+error messages are worded carefully so as not to
+reveal whether a given identiﬁer is registered,
+protecting account privacy.
+10.3 Dashboard (Existing)
+Purpose. To give the User a single home screen from
+which every service is reachable.
+Description. Immediately after login, the User sees a
+dashboard summarising recent activity — documents
+drafted, orders placed, consultations booked —
+alongside quick links into each service category.
+Preconditions. The User is logged in.
+Workﬂow. Login triggers the dashboard to load; the
+User then either reviews recent activity or selects a
+new service to begin.
+Business Rules. The dashboard reﬂects only the
+logged-in User's own activity; no data belonging to
+another account is ever surfaced here.
+
+Inputs. None directly — the dashboard is populated
+from the User's existing history.
+Outputs. A summary view combining service
+shortcuts, recent activity, and notiﬁcations.
+Exceptions. Recent activity fails to load due to a
+temporary issue, in which case a retry option or
+fallback message is shown rather than a blank
+screen.
+Validation Rules. Not applicable beyond conﬁrming
+an active session.
+Success Scenario. The dashboard loads promptly
+with current activity and notiﬁcations visible.
+Failure Scenario. Recent activity is temporarily
+unavailable, but the User can still navigate to any
+service without being blocked.
+User Interaction. A clean, categorised layout designed
+so that any service is no more than one or two clicks
+away.
+10.4 Proﬁle Management (Existing)
+Purpose. To let the User keep their personal and
+identity information current.
+
+Description. From the proﬁle screen, a User can
+update their name, contact details, and saved
+addresses, and can upload or update the KYC
+documents (Aadhaar, PAN) required for e-stamp and
+e-sign actions.
+Preconditions. The User is logged in.
+Workﬂow. The User opens their proﬁle, reviews
+existing details, edits the relevant ﬁelds or uploads
+updated documents, and saves the changes.
+Business Rules. Changing a veriﬁed mobile number
+triggers re-veriﬁcation via OTP. If previously veriﬁed
+KYC details are altered, they may need to be re-
+veriﬁed before they can be used again for e-signing.
+Inputs. Name, contact details, address, KYC
+documents.
+Outputs. An updated proﬁle and a conﬁrmation
+notiﬁcation.
+Exceptions. An uploaded document is in an
+unsupported format; entered KYC details do not
+match the uploaded document.
+Validation Rules. Aadhaar and PAN entries must
+follow their respective standard formats; uploaded
+ﬁles must meet accepted type and size limits.
+Success Scenario. The User updates their address
+and sees it reﬂected across their account
+
+immediately.
+Failure Scenario. A blurred or invalid KYC document is
+uploaded; the system rejects it and asks for a clearer
+copy.
+User Interaction. Editable ﬁelds with inline validation
+feedback and a clear save conﬁrmation.
+10.5 AI Legal Assistant (Existing, limited to
+drafting support) — Conversational Guidance is
+a Future Enhancement
+Purpose. To help a User draft documents eﬃciently
+today, and — once expanded — to help them
+understand their situation in plain language.
+Description. The existing "Droid" assistant helps
+generate documents and is available around the
+clock. This document recommends extending it into a
+broader conversational assistant capable of
+answering general legal questions and suggesting the
+appropriate service, always with a visible disclaimer
+that its output is not a substitute for professional
+advice.
+Preconditions. The User is logged in for a
+personalised drafting session, or may interact with
+general guidance features without logging in,
+
+depending on how the conversational layer is
+eventually implemented.
+Workﬂow. The User opens the assistant, describes
+what they need, and the assistant asks clarifying
+questions before suggesting a document or drafting
+clause content. The User can accept the suggestion,
+edit it, or ask to be connected to a human advocate.
+Business Rules. Any AI-generated draft content must
+remain fully editable and subject to User review
+before ﬁnalisation. Every AI response must carry a
+clear, persistent disclaimer regarding its informational
+nature.
+Inputs. Free-text description of the User's need or
+situation.
+Outputs. A suggested document or service, draft
+clause text, and — once the conversational layer
+exists — general legal guidance and an escalation
+option.
+Exceptions. The assistant cannot conﬁdently interpret
+an ambiguous or highly speciﬁc query and ﬂags it for
+escalation rather than guessing.
+Validation Rules. Not directly applicable; oversight
+here comes from User review rather than ﬁeld-level
+checks.
+
+Success Scenario. A User describes wanting to
+formalise a rental arrangement; the assistant
+recommends the Rent Agreement template and pre-
+ﬁlls any details it already has.
+Failure Scenario. A User asks a narrow, fact-speciﬁc
+legal question the assistant cannot safely answer;
+rather than guessing, it offers to connect the User
+with an advocate.
+User Interaction. A chat-style interface accessible
+from the dashboard and embedded within the
+document-drafting ﬂow.
+10.6 Legal Document Generation (Existing)
+Purpose. To let a User produce a legally sound
+document without needing a lawyer to draft it from
+scratch.
+Description. The User picks a document type, works
+through a guided form, and watches a live preview
+take shape before downloading the ﬁnished ﬁle.
+Preconditions. The User is logged in and has selected
+a document type from the template library.
+Workﬂow. The User browses or searches the library,
+selects a document (a Rent Agreement, for instance),
+and ﬁlls in the guided form — parties, dates, monetary
+
+terms, and so on. The system generates a live preview
+as details are entered; the User reviews it, makes any
+edits, and proceeds to payment before the document
+is ﬁnalised and, where applicable, routed onward to
+stamping and signing.
+Business Rules. Only lawyer-veriﬁed templates may
+be used for a document intended to have legal effect,
+and mandatory clauses deﬁned in the template
+cannot be removed by the User.
+Inputs. Party details, dates, monetary terms,
+addresses, and other document-speciﬁc ﬁelds.
+Outputs. A generated draft, available as a live preview
+and a downloadable ﬁle.
+Exceptions. A required ﬁeld is left blank; dates
+conﬂict with one another (an end date before a start
+date, for example); the selected document type is not
+supported for the User's chosen state.
+Validation Rules. Mandatory ﬁelds must be
+completed, dates must be internally consistent,
+monetary values must be positive, and identity ﬁelds
+such as PAN or Aadhaar must follow expected
+formats where captured.
+Success Scenario. All ﬁelds are completed correctly,
+the preview looks right, payment goes through, and a
+complete draft is downloaded within minutes.
+
+Failure Scenario. A mandatory clause ﬁeld is left
+blank; the system highlights it and withholds the
+preview until it is corrected.
+User Interaction. A step-by-step guided form paired
+with a live, side-by-side preview of the document as it
+is built.
+10.7 e-Stamp Purchase (Existing)
+Purpose. To let a User obtain a valid e-stamp
+certiﬁcate for a document that requires one.
+Description. After selecting their state or union
+territory, the User sees the applicable stamp duty
+calculated automatically, and the certiﬁcate is
+procured through an authorised vendor once payment
+is made.
+Preconditions. A document exists that requires
+stamping, and the User has conﬁrmed the relevant
+state or UT.
+Workﬂow. The User selects "Buy e-Stamp," conﬁrms
+the state and document details, reviews the
+calculated duty, pays, and the system submits the
+request to the relevant vendor before returning the
+certiﬁcate — either as a download or as a scheduled
+physical delivery.
+
+Business Rules. Stamp duty is calculated strictly
+according to the selected state's rules, and the validity
+and usage of the resulting e-stamp follow the issuing
+authority's own regulations, which the platform has no
+ability to override.
+Inputs. State/UT selection, document type and value,
+and KYC details as required by the vendor.
+Outputs. A digital e-stamp certiﬁcate and/or a
+scheduled physical delivery.
+Exceptions. The chosen state is not currently
+supported for e-stamping through the platform; the
+vendor's system is temporarily unavailable; the
+payment fails.
+Validation Rules. The state/UT must be one from the
+supported list, and the document value entered must
+be a valid, positive amount.
+Success Scenario. A User selects Maharashtra, pays
+the calculated duty, and receives a valid e-stamp
+certiﬁcate within the platform's usual turnaround time.
+Failure Scenario. The vendor's system is brieﬂy
+unavailable; the User is informed of the delay along
+with a revised expected turnaround.
+User Interaction. The stamp-duty calculation is shown
+clearly before payment is requested, so there are no
+surprises at checkout.
+
+10.8 Digital Signature (Existing)
+Purpose. To let a User (and any other named parties)
+execute a document electronically, with the same
+legal standing as a physical signature.
+Description. Signature requests go out to every
+named party; each must verify their identity through
+Aadhaar OTP before their signature is applied, and a
+tamper-evident ﬁnal document is produced once
+everyone has signed.
+Preconditions. A document exists with one or more
+named signing parties and valid contact details for
+each.
+Workﬂow. The User initiates e-signing and speciﬁes
+the signing parties. Each party receives a request,
+veriﬁes via Aadhaar OTP, and signs; the platform
+tracks and displays the status of each signature in
+real time until the document is fully executed.
+Business Rules. A document is not considered legally
+complete until every named party has signed, and
+identity must be veriﬁed through Aadhaar OTP before
+any signature is recorded.
+Inputs. Signing party contact details, and Aadhaar
+OTP from each signer at the point of signing.
+
+Outputs. A fully signed, tamper-evident ﬁnal
+document with an embedded audit trail.
+Exceptions. A named party fails to complete Aadhaar
+veriﬁcation; a signing request goes unanswered and
+eventually expires.
+Validation Rules. Aadhaar OTP veriﬁcation must
+precede any recorded signature, and all mandatory
+signing parties must complete their part before the
+document is marked as ﬁnished.
+Success Scenario. Every party receives their request,
+veriﬁes via Aadhaar OTP, and signs within the
+expected window, after which the User downloads the
+fully executed document.
+Failure Scenario. One party does not respond; the
+User can send a reminder or, if enough time passes,
+cancel and restart the request.
+User Interaction. A visible tracker showing
+signed/pending status for each party, which is
+particularly useful in multi-party agreements.
+10.9 Consultation Booking (Existing)
+Purpose. To let a User book time with an advocate
+when they need advice rather than a document.
+
+Description. The User picks a topic and a preferred
+slot, the system assigns and notiﬁes an available
+advocate, and the booking is conﬁrmed once
+accepted.
+Preconditions. The User is logged in and has
+identiﬁed a need for professional legal advice.
+Workﬂow. The User selects "Book Consultation,"
+chooses a topic and time slot, completes payment if
+required, and receives conﬁrmation once an advocate
+accepts the booking. Consultation outcome notes are
+made available to the User afterward.
+Business Rules. A consultation can only be assigned
+to an advocate qualiﬁed in the relevant practice area,
+and cancellations or rescheduling follow the
+platform's stated policy.
+Inputs. Consultation topic, preferred date and time,
+and payment details where applicable.
+Outputs. A conﬁrmed booking, followed later by
+outcome notes from the consultation itself.
+Exceptions. No advocate is available in the requested
+window; an advocate declines a booking after it is
+made.
+Validation Rules. The selected slot must fall within an
+advocate's stated availability, and the topic must
+correspond to a supported consultation category.
+
+Success Scenario. A User books a divorce
+consultation and receives conﬁrmation of the
+advocate's name and the scheduled time shortly
+afterward.
+Failure Scenario. No advocate is free at the requested
+time; the system offers the next available slot instead
+of simply declining the request.
+User Interaction. A straightforward category picker
+paired with a calendar-style slot selector.
+10.10 Government Certiﬁcate Services
+(Existing)
+Purpose. To let a User apply for common government
+certiﬁcates without a physical visit to a government
+oﬃce.
+Description. The User provides the details required for
+a speciﬁc certiﬁcate type, and the platform
+coordinates fulﬁlment and delivery.
+Preconditions. The User has the personal or family
+details relevant to the certiﬁcate being requested.
+Workﬂow. The User selects a certiﬁcate type,
+completes the intake form speciﬁc to it, pays if
+applicable, and the request is routed for processing
+
+before the result is delivered within the stated
+turnaround time.
+Business Rules. Required ﬁelds vary by certiﬁcate
+type and by state, and it bears repeating that the
+platform facilitates these requests rather than issuing
+certiﬁcates in a government capacity itself.
+Inputs. Personal or family details speciﬁc to the
+certiﬁcate, along with any supporting information
+requested.
+Outputs. The completed certiﬁcate or equivalent
+process guidance, delivered by download, email, or
+WhatsApp.
+Exceptions. A required detail is missing or
+inconsistent; the requested certiﬁcate type is not
+currently supported in the User's state.
+Validation Rules. Mandatory ﬁelds for the speciﬁc
+certiﬁcate type must be completed, and identity
+details must be internally consistent.
+Success Scenario. A User requests a legal heir
+certiﬁcate and receives it, or the relevant process
+guidance, within the stated turnaround time.
+Failure Scenario. The requested certiﬁcate is not
+supported in the User's state; they are informed
+clearly and pointed toward an alternative, such as a
+consultation.
+
+User Interaction. A certiﬁcate-speciﬁc intake form
+with turnaround expectations stated upfront rather
+than discovered later.
+10.11 Property Record Retrieval (Existing)
+Purpose. To let a User retrieve land or property
+records for a speciﬁed location without visiting the
+relevant registry oﬃce.
+Description. After entering location-speciﬁc identiﬁers
+— which vary by state — the User receives the
+corresponding record, typically over WhatsApp.
+Preconditions. The User has the identiﬁers required
+for their state's particular record format (district,
+tehsil, village, and a survey, khasra, or khata number,
+depending on the state).
+Workﬂow. The User selects "Property Records,"
+chooses their state, enters the required identiﬁers,
+pays if applicable, and the request is submitted for
+retrieval before the record is delivered within the
+committed turnaround time.
+Business Rules. The speciﬁc identiﬁers required differ
+from state to state, since record formats and
+registries are not standardised nationally.
+
+Inputs. State, district/tehsil/village, and the identiﬁer
+speciﬁc to that state's system.
+Outputs. The requested property record, generally
+delivered via WhatsApp.
+Exceptions. The entered identiﬁers do not match any
+record in the source registry; the requested state is
+not currently supported.
+Validation Rules. Identiﬁer ﬁelds must follow the
+format expected for the selected state.
+Success Scenario. A User enters the correct Punjab
+identiﬁers and receives the Jamabandi document on
+WhatsApp within 24 hours.
+Failure Scenario. The entered identiﬁers do not
+correspond to any known record; the User is notiﬁed
+and asked to re-check the details.
+User Interaction. A state-speciﬁc form that only
+shows the ﬁelds relevant to that state's record
+system, rather than a generic, one-size-ﬁts-all form.
+10.12 Payments (Existing)
+Purpose. To let a User pay for any service securely
+and receive proper proof of payment.
+
+Description. Pricing is broken down and shown
+transparently — service fee, stamp duty, consultation
+fee, as relevant — before the User is asked to pay
+through a secure gateway, after which an invoice is
+generated.
+Preconditions. The User has an order ready for
+checkout, whether that is a document, an e-stamp, a
+consultation, a certiﬁcate, or a property-record
+request.
+Workﬂow. The system shows an itemised total, the
+User selects a payment method (card, UPI, or net-
+banking), completes the transaction, and the system
+conﬁrms payment and generates an invoice before
+proceeding with the underlying service.
+Business Rules. Pricing must clearly separate the
+platform's own fee from any government stamp duty
+or third-party charge, and refunds are governed by the
+platform's published refund policy.
+Inputs. Payment method details, handled securely by
+the gateway rather than stored directly by the
+platform.
+Outputs. Payment conﬁrmation and a downloadable
+invoice.
+Exceptions. The payment is declined; the gateway
+times out; the same request is submitted more than
+once.
+
+Validation Rules. The amount charged must match
+the displayed total, and a transaction must not be
+processed twice for the same order.
+Success Scenario. A User pays via UPI, the payment
+is conﬁrmed almost instantly, and they proceed to the
+next step.
+Failure Scenario. A bank declines the payment; the
+User sees a clear error and is offered the option to
+retry with a different method.
+User Interaction. A clear, itemised checkout screen
+showing every charge before payment is requested.
+10.13 Notiﬁcations (Existing in part) — Uniﬁed
+In-App Notiﬁcations is a Future Enhancement
+Purpose. To keep the User informed as their requests
+move through the system.
+Description. Transactional updates — order
+conﬁrmation, payment status, signature requests,
+service completion — are currently sent via SMS,
+WhatsApp, or email depending on the workﬂow.
+Consolidating these into a single, conﬁgurable in-app
+notiﬁcation centre is proposed as a future
+enhancement rather than something already
+available.
+
+Preconditions. The User has an active account and at
+least one ongoing or completed transaction.
+Workﬂow. A triggering event occurs — payment
+conﬁrmed, e-stamp issued, signature pending,
+certiﬁcate delivered — and the system composes and
+sends the relevant notiﬁcation through the
+appropriate channel.
+Business Rules. Notiﬁcations tied to legally or
+ﬁnancially signiﬁcant events, such as payments and
+signature requests, must always be sent regardless of
+any general preference settings a User might
+conﬁgure.
+Inputs. None directly from the User beyond channel
+preferences, where conﬁgurable.
+Outputs. SMS, WhatsApp, or email messages, and —
+under the proposed enhancement — entries in an in-
+app notiﬁcation centre.
+Exceptions. A given channel is temporarily
+unreachable (a WhatsApp delivery failure, for
+instance), in which case a fallback channel should
+ideally be used.
+Validation Rules. Notiﬁcations must be sent to the
+veriﬁed contact details on the User's proﬁle.
+Success Scenario. A User receives a WhatsApp
+message conﬁrming that their requested property
+
+record has been delivered.
+Failure Scenario. A WhatsApp message fails to send;
+the system falls back to email or SMS so the User is
+still informed.
+User Interaction. Presently channel-based; the
+proposed enhancement would add a single
+notiﬁcation icon on the dashboard consolidating all
+recent updates.
+10.14 Logout (Existing)
+Purpose. To let a User end their session securely.
+Description. Logging out terminates the active
+session and returns the User to the public landing
+page.
+Preconditions. The User is currently logged in.
+Workﬂow. The User selects "Logout" from the account
+menu, the session is terminated, and they are
+redirected to the login or landing page.
+Business Rules. The session token must be fully
+invalidated on logout so that it cannot be reused
+afterward.
+Inputs. None — a single user action.
+Outputs. Session termination and redirection.
+
+Exceptions. A temporary system issue prevents
+logout from completing, in which case the User is
+shown an error and can retry.
+Validation Rules. Not applicable beyond conﬁrming
+an active session exists to terminate.
+Success Scenario. The User selects logout and is
+returned to the landing page with no further access to
+account data until they log in again.
+Failure Scenario. A brief connectivity issue prevents
+logout from completing; the User is prompted to try
+again.
+User Interaction. A single, clearly labelled action
+within the account or proﬁle menu.
+11. Use Case Diagram (User Only)
+The diagram below summarises the User's
+interactions with the system as a set of use cases. A
+few relationships are worth calling out: Payment (UC-
+08) is included by any use case involving a charge,
+and Document Generation (UC-04) frequently extends
+into e-Stamp (UC-05) and Digital Signature (UC-06)
+whenever a document needs to be both stamped and
+signed. Track Requests (UC-09) is shown here as a
+proposed use case, corresponding to the case-
+
+tracking enhancement discussed earlier in this
+document and in the Master SRS.
+graph LR
+    User((User))
+    User --> UC01[UC-01 Register]
+    User --> UC02[UC-02 Login]
+    User --> UC03[UC-03 Update Profile]
+    User --> UC04[UC-04 Generate Legal 
+Document]
+    User --> UC05[UC-05 Purchase e-Stamp]
+    User --> UC06[UC-06 Apply Digital 
+Signature]
+    User --> UC07[UC-07 Book Consultation]
+    User --> UC08[UC-08 Make Payment]
+    User --> UC09[UC-09 Track Requests - 
+Proposed]
+    User --> UC10[UC-10 Logout]
+    UC04 -.include.-> UC08
+    UC05 -.include.-> UC08
+    UC07 -.include.-> UC08
+    UC04 -.extend.-> UC05
+    UC04 -.extend.-> UC06
+12. Detailed Use Case Speciﬁcations
+UC-01: Register
+
+Actor: Visitor (becomes User on success)
+Precondition: The visitor has a valid mobile
+number or email that is not already registered.
+Main Flow: Visitor provides an identiﬁer →  system
+sends OTP →  visitor enters OTP →  account is
+veriﬁed and created.
+Alternate Flow: OTP is not received; visitor
+requests a resend after the cooldown period.
+Exception Flow: The identiﬁer is already
+registered; the system suggests logging in
+instead.
+Postcondition: A new, veriﬁed User account
+exists.
+UC-02: Login
+Actor: User
+Precondition: The User holds a registered, veriﬁed
+account.
+Main Flow: User provides their identiﬁer →
+system sends OTP or requests a password →
+User authenticates →  a session is created.
+Alternate Flow: User selects account recovery
+instead of a standard login.
+Exception Flow: Repeated failed attempts trigger
+a temporary lockout.
+Postcondition: The User has an authenticated
+session and lands on the dashboard.
+
+UC-03: Update Proﬁle
+Actor: User
+Precondition: The User is logged in.
+Main Flow: User opens their proﬁle →  edits ﬁelds
+or uploads KYC documents →  system validates
+and saves the changes.
+Alternate Flow: A changed mobile number
+triggers re-veriﬁcation via OTP.
+Exception Flow: An invalid KYC document format
+is rejected, with a request to re-upload.
+Postcondition: The proﬁle reﬂects the updated
+information.
+UC-04: Generate Legal Document
+Actor: User
+Precondition: The User is logged in and has
+selected a document type.
+Main Flow: User completes the guided form →
+system generates a preview →  User conﬁrms →
+User proceeds to payment →  the document is
+ﬁnalised.
+Alternate Flow: The User saves an in-progress
+draft and resumes it later.
+Exception Flow: A mandatory ﬁeld is missing; the
+preview is withheld until it is corrected.
+
+Postcondition: A ﬁnished document is available
+for download, and, where applicable, routed
+onward to stamping or signing.
+UC-05: Purchase e-Stamp
+Actor: User
+Precondition: The User has a document that
+requires stamping.
+Main Flow: User selects a state/UT →  system
+calculates the applicable duty →  User pays →  the
+system procures the e-stamp certiﬁcate.
+Alternate Flow: User opts for doorstep delivery
+rather than a digital download.
+Exception Flow: The vendor's system is
+temporarily unavailable, and the User is informed
+of the delay.
+Postcondition: A valid e-stamp certiﬁcate is linked
+to the document.
+UC-06: Apply Digital Signature
+Actor: User (and other named signing parties)
+Precondition: A document exists with named
+signing parties.
+Main Flow: User initiates e-sign →  requests are
+sent to each party →  each party veriﬁes via
+Aadhaar OTP and signs →  the system ﬁnalises
+the document.
+
+Alternate Flow: The User sends a reminder to a
+signatory who has not yet responded.
+Exception Flow: A party fails Aadhaar veriﬁcation,
+and the request remains pending until resolved.
+Postcondition: The document is fully signed and
+tamper-evident.
+UC-07: Book Consultation
+Actor: User
+Precondition: The User is logged in and has
+identiﬁed a consultation need.
+Main Flow: User selects a topic and time slot →
+pays if required →  an advocate is assigned and
+conﬁrms the booking.
+Alternate Flow: The User reschedules to a
+different available slot.
+Exception Flow: No advocate is available at the
+requested time, so the system offers the next
+available slot.
+Postcondition: A conﬁrmed consultation booking
+exists.
+UC-08: Make Payment
+Actor: User
+Precondition: An order is ready for checkout.
+
+Main Flow: The system displays an itemised total
+→  User selects a payment method →  payment is
+processed →  an invoice is generated.
+Alternate Flow: The User retries payment with a
+different method after a decline.
+Exception Flow: A gateway timeout occurs; the
+transaction is not duplicated, and the User is
+prompted to retry.
+Postcondition: Payment is conﬁrmed and linked
+to the originating order.
+UC-09: Track Requests (Proposed Feature)
+Actor: User
+Precondition: The User has one or more active
+service requests underway.
+Main Flow: The User opens a consolidated
+requests view →  sees the current status of each
+active item.
+Alternate Flow: The User ﬁlters the view by
+request type or status.
+Exception Flow: A status update is temporarily
+delayed pending information from an external
+vendor.
+Postcondition: The User has visibility into all of
+their active requests from a single screen.
+UC-10: Logout
+
+Actor: User
+Precondition: The User is logged in.
+Main Flow: User selects logout →  the session is
+terminated →  the User is redirected to the landing
+page.
+Alternate Flow: None.
+Exception Flow: A temporary failure prevents
+logout from completing, and the User retries.
+Postcondition: The User's session is fully
+invalidated.
+13. Functional Requirements
+(Numbered)
+The requirements below are stated formally, in the
+conventional "the system shall" style, since this is the
+section of the document intended for direct
+traceability into design, development, and test
+planning. Each one is linked back to the descriptive
+section it was drawn from.
+ID Requirement Related
+Section
+FR-U-001 The system shall allow a
+visitor to register using a
+10.1
+
+ID Requirement Related
+Section
+mobile number or email
+veriﬁed by OTP.
+FR-U-002
+The system shall prevent
+duplicate registration
+using the same mobile
+number or email.
+10.1
+FR-U-003
+The system shall allow a
+registered User to log in
+using OTP-based (or
+password-based)
+authentication.
+10.2
+FR-U-004
+The system shall
+temporarily lock an
+account after repeated
+failed login attempts.
+10.2
+FR-U-005
+The system shall present
+a dashboard
+summarising the User's
+services, recent activity,
+and notiﬁcations after
+login.
+10.3
+FR-U-006 The system shall allow
+the User to view and edit
+10.4
+
+ID Requirement Related
+Section
+their proﬁle details and
+KYC documents.
+FR-U-007
+The system shall require
+re-veriﬁcation of a
+mobile number if it is
+changed on the proﬁle.
+10.4
+FR-U-008
+The system shall provide
+an AI assistant capable
+of assisting with
+document generation on
+demand.
+10.5
+FR-U-009
+The system shall display
+a disclaimer on all AI-
+generated guidance
+indicating it is not a
+substitute for
+professional legal
+advice.
+10.5
+FR-U-010
+The system shall provide
+a categorised,
+searchable library of
+legal document
+templates.
+10.6
+
+ID Requirement Related
+Section
+FR-U-011
+The system shall
+generate a live preview
+of the document as the
+User completes the
+guided form.
+10.6
+FR-U-012
+The system shall prevent
+document preview and
+ﬁnalisation until all
+mandatory ﬁelds are
+completed.
+10.6
+FR-U-013
+The system shall allow
+the User to select a
+state/UT and view the
+calculated stamp duty
+before payment.
+10.7
+FR-U-014
+The system shall
+procure a valid e-stamp
+certiﬁcate through an
+authorised vendor upon
+successful payment.
+10.7
+
+ID Requirement Related
+Section
+FR-U-015
+The system shall allow
+the User to send e-
+signature requests to all
+named parties of a
+document.
+10.8
+FR-U-016
+The system shall verify
+each signer's identity via
+Aadhaar OTP before
+recording a signature.
+10.8
+FR-U-017
+The system shall display
+real-time signature
+status for each party
+until the document is
+fully executed.
+10.8
+FR-U-018
+The system shall allow
+the User to book a
+consultation by selecting
+a topic and an available
+time slot.
+10.9
+FR-U-019
+The system shall notify
+the User of the assigned
+advocate and conﬁrmed
+consultation time.
+10.9
+
+ID Requirement Related
+Section
+FR-U-020
+The system shall allow
+the User to request
+applicable government
+certiﬁcates by
+completing a certiﬁcate-
+speciﬁc intake form.
+10.10
+FR-U-021
+The system shall allow
+the User to request
+property or land records
+by providing the
+location-speciﬁc
+identiﬁers required by
+their state.
+10.11
+FR-U-022
+The system shall display
+an itemised price
+breakdown before
+requesting payment.
+10.12
+FR-U-023
+The system shall
+process payments
+through a secure
+payment gateway and
+issue a downloadable
+invoice.
+10.12
+FR-U-024 The system shall not
+process the same
+10.12
+
+ID Requirement Related
+Section
+payment more than once
+for a single order.
+FR-U-025
+The system shall send
+notiﬁcations to the User
+for order conﬁrmation,
+payment status,
+signature requests, and
+service completion.
+10.13
+FR-U-026
+The system shall allow
+the User to log out
+securely, invalidating the
+active session.
+10.14
+FR-U-027
+(Proposed
+Feature)
+The system shall provide
+the User a consolidated
+view to track the status
+of active requests
+across services.
+10.9 /
+UC-09
+14. Non-Functional Requirements
+(User Module)
+The following non-functional expectations apply
+speciﬁcally to the User-facing part of the system,
+
+reﬁning the system-wide expectations described in
+the Master SRS.
+Category Requirement
+Security
+All User PII and KYC data must be
+encrypted, and e-sign and payment
+actions must require OTP-based
+veriﬁcation.
+Reliability
+Payment, e-stamp, and e-sign
+actions must be idempotent — a
+retry after a failure should never
+duplicate the underlying transaction.
+Performance
+Document previews should update
+within a few seconds under normal
+load, and the AI assistant should
+respond promptly rather than
+leaving the User waiting.
+Scalability
+User-facing services should stay
+responsive even as the number of
+concurrently active accounts grows
+substantially.
+Availability
+Core journeys — login, document
+generation, payment — should
+experience minimal unplanned
+downtime.
+
+Category Requirement
+Usability
+A ﬁrst-time User should be able to
+generate a common document,
+such as a rent agreement, without
+external help, within a short session.
+Accessibility
+The interface should work
+comfortably on both desktop and
+mobile browsers, with clear,
+readable forms.
+15. Assumptions
+This speciﬁcation assumes that the User has access
+to a working mobile number or email for OTP
+veriﬁcation, and, where Aadhaar-based e-signing is
+involved, an Aadhaar-linked mobile number
+speciﬁcally. It also assumes a reasonable degree of
+digital literacy — enough to complete an online form
+and make an online payment without assistance —
+and that the document templates presented to the
+User are kept legally current by the platform's own
+legal and content team.
+16. Constraints
+Several practical constraints shape what the User
+module can guarantee. e-Stamp issuance depends on
+
+third-party vendors whose availability and rules the
+platform does not control. Aadhaar-based e-signature
+similarly requires integration through a licensed
+signature service provider operating under applicable
+regulation. Certiﬁcate and property-record requests
+are partly fulﬁlled through back-oﬃce processing
+rather than fully automated pipelines, so turnaround
+times are not instantaneous. Finally, the User module
+inherits the same security and data-protection
+constraints deﬁned for the system as a whole in the
+Master SRS.
+17. Future Enhancements
+Several improvements naturally follow from the gaps
+identiﬁed throughout this document: expanding the AI
+Legal Assistant into a genuine conversational tool (as
+discussed in Section 10.5 and in the Master SRS),
+building out the "Track Requests" view hinted at in UC-
+09 into a proper case-tracking dashboard,
+consolidating notiﬁcations into a single in-app centre
+rather than the current channel-by-channel approach,
+adding multi-language support for both the AI
+assistant and core forms, and eventually extending
+User access to a native mobile application.
+18. Conclusion
+
+This document has worked through every feature
+available to the User role on eSahayak — from the
+moment a visitor registers to the moment they log out
+— describing not just what each feature does, but the
+rules, exceptions, and edge cases that govern it. Read
+alongside the Master SRS, which supplies the system-
+wide context this document deliberately leaves out,
+the two together form a reasonably complete
+requirement baseline for the User-facing side of the
+platform, suitable for guiding design, development,
+and testing in the phases that follow.
+End of User Module SRS.
+
