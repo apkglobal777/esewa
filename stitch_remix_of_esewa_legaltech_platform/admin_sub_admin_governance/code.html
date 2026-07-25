@@ -1,0 +1,603 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>esewa Legal Admin - Sub-Admin Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dce2f7;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#3755c3",
+                        "on-error": "#ffffff",
+                        "tertiary": "#003272",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#444653",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "tertiary-fixed": "#d8e2ff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#00489e",
+                        "on-primary-container": "#a8b8ff",
+                        "surface-container-low": "#f1f3ff",
+                        "surface": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-background": "#141b2b",
+                        "surface-container": "#e9edff",
+                        "on-tertiary-fixed": "#001a42",
+                        "on-secondary-container": "#fefcff",
+                        "on-primary-fixed": "#001453",
+                        "secondary": "#0051d5",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "on-tertiary-container": "#9cbbff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f9f9ff",
+                        "secondary-container": "#316bf3",
+                        "inverse-on-surface": "#edf0ff",
+                        "primary-container": "#1e40af",
+                        "on-surface": "#141b2b",
+                        "on-primary-fixed-variant": "#173bab",
+                        "surface-dim": "#d3daef",
+                        "surface-container-high": "#e1e8fd",
+                        "primary-fixed": "#dde1ff",
+                        "background": "#f9f9ff",
+                        "primary": "#00288e",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#293040",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "outline-variant": "#c4c5d5",
+                        "secondary-fixed": "#dbe1ff",
+                        "inverse-primary": "#b8c4ff",
+                        "on-secondary-fixed": "#00174b",
+                        "surface-variant": "#dce2f7",
+                        "surface-container-highest": "#dce2f7",
+                        "outline": "#757684"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "container-max": "1440px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "stack-lg": "24px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "stack-xs": "4px",
+                        "stack-xl": "48px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SIDEBAR -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col py-stack-lg z-50">
+<div class="px-gutter mb-stack-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">esewa Legal</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Admin Portal</p>
+</div>
+<nav class="flex-1 px-stack-md space-y-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">gavel</span>
+<span class="font-label-md text-label-md">Lawyer Directory</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-label-md text-label-md">Client Management</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">folder_open</span>
+<span class="font-label-md text-label-md">Case Files</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-label-md text-label-md">Billings</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-primary dark:text-inverse-primary bg-primary-container/10 dark:bg-primary-container/20 font-bold border-r-4 border-primary" href="#">
+<span class="material-symbols-outlined mr-3">manage_accounts</span>
+<span class="font-label-md text-label-md">Sub-Admin Management</span>
+</a>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-label-md text-label-md">System Settings</span>
+</a>
+</nav>
+<div class="px-stack-md mt-auto pt-stack-md border-t border-outline-variant">
+<div class="flex items-center p-3 rounded-xl bg-surface-container-low">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a corporate administrative officer, mid-40s, looking confidently at the camera, soft office lighting, modern corporate aesthetic, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1vf3EW88m0wuG_8uitpoMTbfwF3GobCDRq5qh_pq4rUB7NeKBLBVJV41OtReb8RxhdwRswXA12bnBLEWCBkNu8LD2iC8zaqRhGfHkWyCJ51kGzm7mpXIIQL2IHPCV98sJJRu5LzYnixETFfg6TZ0lVeVehnBLIMy8blIm4-pkMmaoPGw6lpgkepkbRTyMIS2k00dzuX8sC8vcZEpFRO1g2GPcTevtKaHVooMH8CvMhzwp6oCSVfsdjFsMQ9SwgTprccQilM_IZuc">
+</div>
+<div class="ml-3 overflow-hidden">
+<p class="font-label-md text-label-md font-bold truncate">Rajesh Sharma</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Super Admin</p>
+</div>
+<button class="ml-auto text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- MAIN CONTENT -->
+<main class="ml-[280px] min-h-screen">
+<!-- TOP NAV BAR -->
+<header class="sticky top-0 z-40 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline h-16 flex justify-between items-center px-margin-desktop backdrop-blur-sm bg-opacity-90">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-sm transition-all" placeholder="Search sub-admins, regions, or activity..." type="text">
+</div>
+</div>
+<div class="flex items-center space-x-gutter">
+<div class="flex items-center space-x-stack-md">
+<button class="relative p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center space-x-stack-sm">
+<button class="px-4 py-2 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary-container transition-all active:scale-95 flex items-center">
+<span class="material-symbols-outlined text-[20px] mr-2">person_add</span>
+                        Add Sub-Admin
+                    </button>
+</div>
+</div>
+</header>
+<div class="p-margin-desktop">
+<!-- PAGE HEADER -->
+<div class="mb-stack-xl flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Sub-Admin Management</h2>
+<p class="text-on-surface-variant font-body-md mt-1">Configure access control and monitor operational efficiency across regions.</p>
+</div>
+<div class="flex items-center bg-surface-container-high p-1 rounded-lg">
+<button class="px-4 py-1.5 bg-white shadow-sm rounded-md text-label-md font-bold text-primary">Overview</button>
+<button class="px-4 py-1.5 text-on-surface-variant text-label-md hover:text-primary transition-colors">Logs</button>
+</div>
+</div>
+<!-- METRICS GRID -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-xl">
+<!-- Metric Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl flex items-center space-x-stack-lg shadow-sm">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed-dim/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">badge</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-wide">Active Sub-Admins</p>
+<div class="flex items-baseline space-x-2">
+<span class="font-display text-headline-md">42</span>
+<span class="text-primary font-label-sm flex items-center">
+<span class="material-symbols-outlined text-sm">arrow_upward</span> 12%
+                            </span>
+</div>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl flex items-center space-x-stack-lg shadow-sm">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl">timer</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-wide">Avg. Verification Time</p>
+<div class="flex items-baseline space-x-2">
+<span class="font-display text-headline-md">14.2m</span>
+<span class="text-primary font-label-sm flex items-center">
+<span class="material-symbols-outlined text-sm">arrow_downward</span> 4%
+                            </span>
+</div>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl flex items-center space-x-stack-lg shadow-sm">
+<div class="w-12 h-12 rounded-lg bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-3xl">auto_graph</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-wide">Performance Score</p>
+<div class="flex items-baseline space-x-2">
+<span class="font-display text-headline-md">94.8</span>
+<span class="text-primary font-label-sm flex items-center">
+<span class="material-symbols-outlined text-sm">star</span> High
+                            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- BENTO GRID SECTION -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- MAIN TABLE AREA -->
+<div class="col-span-12 lg:col-span-9 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-stack-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm">Operational Staff</h3>
+<div class="flex space-x-stack-sm">
+<div class="relative">
+<select class="appearance-none bg-white border border-outline-variant px-4 py-2 pr-10 rounded-lg text-label-md outline-none focus:ring-1 focus:ring-primary cursor-pointer">
+<option>All Regions</option>
+<option>Delhi</option>
+<option>Mumbai</option>
+<option>Bangalore</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-white border border-outline-variant px-4 py-2 pr-10 rounded-lg text-label-md outline-none focus:ring-1 focus:ring-primary cursor-pointer">
+<option>Status: All</option>
+<option>Active</option>
+<option>On Leave</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50 text-on-surface-variant font-label-sm uppercase tracking-wider">
+<th class="px-stack-lg py-4 border-b border-outline-variant">Sub-Admin Name</th>
+<th class="px-stack-lg py-4 border-b border-outline-variant">Assigned Region</th>
+<th class="px-stack-lg py-4 border-b border-outline-variant">Verification Load</th>
+<th class="px-stack-lg py-4 border-b border-outline-variant">Status</th>
+<th class="px-stack-lg py-4 border-b border-outline-variant text-right">Performance</th>
+<th class="px-stack-lg py-4 border-b border-outline-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-stack-lg py-4">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-xs mr-3">AK</div>
+<div>
+<p class="font-label-md text-label-md">Arjun Kumar</p>
+<p class="text-xs text-on-surface-variant">Level 3 • Sr. Admin</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-on-surface">Delhi NCR</span>
+</td>
+<td class="px-stack-lg py-4">
+<div class="w-full max-w-[100px]">
+<div class="flex justify-between text-[10px] mb-1 font-bold">
+<span>12/20</span>
+<span>60%</span>
+</div>
+<div class="w-full h-1.5 bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg text-[11px] font-bold bg-[#D1FAE5] text-[#065F46]">ACTIVE</span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end font-bold text-primary">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+                                            4.8/5.0
+                                        </div>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end space-x-2">
+<button class="p-1.5 hover:bg-primary-container/10 rounded-md text-primary transition-colors" title="Permissions">
+<span class="material-symbols-outlined text-[20px]">key</span>
+</button>
+<button class="p-1.5 hover:bg-error/10 rounded-md text-error transition-colors" title="Deactivate">
+<span class="material-symbols-outlined text-[20px]">person_off</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-stack-lg py-4">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-xs mr-3">SP</div>
+<div>
+<p class="font-label-md text-label-md">Sunita Patel</p>
+<p class="text-xs text-on-surface-variant">Level 2 • Verifier</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-on-surface">Mumbai</span>
+</td>
+<td class="px-stack-lg py-4">
+<div class="w-full max-w-[100px]">
+<div class="flex justify-between text-[10px] mb-1 font-bold text-error">
+<span>18/20</span>
+<span>90%</span>
+</div>
+<div class="w-full h-1.5 bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg text-[11px] font-bold bg-[#FEF3C7] text-[#92400E]">ON LEAVE</span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end font-bold text-primary">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+                                            4.9/5.0
+                                        </div>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end space-x-2">
+<button class="p-1.5 hover:bg-primary-container/10 rounded-md text-primary transition-colors" title="Permissions">
+<span class="material-symbols-outlined text-[20px]">key</span>
+</button>
+<button class="p-1.5 hover:bg-error/10 rounded-md text-error transition-colors" title="Deactivate">
+<span class="material-symbols-outlined text-[20px]">person_off</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-stack-lg py-4">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs mr-3">RM</div>
+<div>
+<p class="font-label-md text-label-md">Rahul Mehta</p>
+<p class="text-xs text-on-surface-variant">Level 1 • Junior Admin</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-on-surface">Bangalore</span>
+</td>
+<td class="px-stack-lg py-4">
+<div class="w-full max-w-[100px]">
+<div class="flex justify-between text-[10px] mb-1 font-bold">
+<span>5/20</span>
+<span>25%</span>
+</div>
+<div class="w-full h-1.5 bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 25%"></div>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg text-[11px] font-bold bg-[#D1FAE5] text-[#065F46]">ACTIVE</span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end font-bold text-primary">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+                                            4.2/5.0
+                                        </div>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end space-x-2">
+<button class="p-1.5 hover:bg-primary-container/10 rounded-md text-primary transition-colors" title="Permissions">
+<span class="material-symbols-outlined text-[20px]">key</span>
+</button>
+<button class="p-1.5 hover:bg-error/10 rounded-md text-error transition-colors" title="Deactivate">
+<span class="material-symbols-outlined text-[20px]">person_off</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-stack-lg py-4">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed flex items-center justify-center font-bold text-xs mr-3">PS</div>
+<div>
+<p class="font-label-md text-label-md">Priya Sharma</p>
+<p class="text-xs text-on-surface-variant">Level 3 • Regional Lead</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-on-surface">Chennai</span>
+</td>
+<td class="px-stack-lg py-4">
+<div class="w-full max-w-[100px]">
+<div class="flex justify-between text-[10px] mb-1 font-bold">
+<span>15/20</span>
+<span>75%</span>
+</div>
+<div class="w-full h-1.5 bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg text-[11px] font-bold bg-[#D1FAE5] text-[#065F46]">ACTIVE</span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end font-bold text-primary">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+                                            4.7/5.0
+                                        </div>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<div class="flex items-center justify-end space-x-2">
+<button class="p-1.5 hover:bg-primary-container/10 rounded-md text-primary transition-colors" title="Permissions">
+<span class="material-symbols-outlined text-[20px]">key</span>
+</button>
+<button class="p-1.5 hover:bg-error/10 rounded-md text-error transition-colors" title="Deactivate">
+<span class="material-symbols-outlined text-[20px]">person_off</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-outline-variant bg-surface-container-low flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant italic">Showing 4 of 42 sub-admins</span>
+<div class="flex space-x-2">
+<button class="p-1 border border-outline-variant rounded hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="p-1 border border-outline-variant rounded bg-primary text-on-primary font-bold px-3 text-xs">1</button>
+<button class="p-1 border border-outline-variant rounded hover:bg-white transition-colors text-xs px-3">2</button>
+<button class="p-1 border border-outline-variant rounded hover:bg-white transition-colors text-xs px-3">3</button>
+<button class="p-1 border border-outline-variant rounded hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SIDEBAR CARDS (Bento Style) -->
+<div class="col-span-12 lg:col-span-3 flex flex-col gap-gutter">
+<!-- Quick Action Card -->
+<div class="bg-primary text-on-primary p-stack-lg rounded-xl shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline-sm text-headline-sm mb-2">Regional Insights</h4>
+<p class="text-on-primary/80 font-body-sm mb-4">Delhi NCR currently has the highest verification backlog (48 cases).</p>
+<button class="w-full py-3 bg-white text-primary font-bold rounded-lg hover:bg-primary-fixed-dim transition-all active:scale-95 text-label-md">Reassign Loads</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-6 -right-6 text-[120px] opacity-10 rotate-12">map</span>
+</div>
+<!-- Permission Snapshot Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl shadow-sm">
+<h4 class="font-label-sm uppercase tracking-wider text-on-surface-variant mb-stack-md">Quick Filter by Access</h4>
+<div class="space-y-3">
+<label class="flex items-center cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox">
+<span class="ml-3 text-label-md group-hover:text-primary transition-colors">Financial Access (4)</span>
+</label>
+<label class="flex items-center cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox">
+<span class="ml-3 text-label-md group-hover:text-primary transition-colors">Document Approval (18)</span>
+</label>
+<label class="flex items-center cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox">
+<span class="ml-3 text-label-md group-hover:text-primary transition-colors">Case Management (32)</span>
+</label>
+<label class="flex items-center cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox">
+<span class="ml-3 text-label-md group-hover:text-primary transition-colors">User Deletion (2)</span>
+</label>
+</div>
+<button class="w-full mt-stack-lg py-2 border-dashed border-2 border-outline-variant rounded-lg text-on-surface-variant hover:border-primary hover:text-primary transition-all text-label-md font-bold">Manage Roles</button>
+</div>
+<!-- Visual Summary -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl shadow-sm flex-grow">
+<div class="flex justify-between items-center mb-stack-md">
+<h4 class="font-label-sm uppercase tracking-wider text-on-surface-variant">Workload Spread</h4>
+<span class="material-symbols-outlined text-primary">pie_chart</span>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span>Delhi</span>
+<span class="font-bold">42%</span>
+</div>
+<div class="h-1.5 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 42%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span>Mumbai</span>
+<span class="font-bold">28%</span>
+</div>
+<div class="h-1.5 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 28%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span>Others</span>
+<span class="font-bold">30%</span>
+</div>
+<div class="h-1.5 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-tertiary" style="width: 30%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FLOATING ACTION BUTTON (Contextual) -->
+<button class="fixed bottom-gutter right-gutter w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-transform group z-50">
+<span class="material-symbols-outlined text-[28px]">add</span>
+<div class="absolute right-full mr-4 px-3 py-1 bg-inverse-surface text-inverse-on-surface text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+            Add New Sub-Admin
+        </div>
+</button>
+<script>
+        // Micro-interactions and simple logic
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                // Potential for adding subtle animations
+            });
+        });
+
+        // Search highlight mock logic
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            console.log('Searching for:', e.target.value);
+            // Implement simple filter logic here for real apps
+        });
+    </script>
+</body></html>

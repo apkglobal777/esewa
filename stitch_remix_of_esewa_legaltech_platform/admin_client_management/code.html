@@ -1,0 +1,493 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Client Management | esewa Legal Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "background": "#f9f9ff",
+                    "inverse-surface": "#293040",
+                    "tertiary-fixed": "#d8e2ff",
+                    "tertiary-container": "#00489e",
+                    "outline": "#757684",
+                    "primary-fixed": "#dde1ff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "on-secondary-fixed": "#00174b",
+                    "primary-container": "#1e40af",
+                    "on-surface-variant": "#444653",
+                    "surface-variant": "#dce2f7",
+                    "surface-bright": "#f9f9ff",
+                    "surface": "#f9f9ff",
+                    "on-primary-container": "#a8b8ff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "primary-fixed-dim": "#b8c4ff",
+                    "primary": "#00288e",
+                    "inverse-primary": "#b8c4ff",
+                    "surface-tint": "#3755c3",
+                    "on-tertiary-fixed-variant": "#004395",
+                    "on-secondary-container": "#fefcff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e1e8fd",
+                    "secondary-fixed": "#dbe1ff",
+                    "outline-variant": "#c4c5d5",
+                    "secondary": "#0051d5",
+                    "on-surface": "#141b2b",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#001a42",
+                    "surface-container-low": "#f1f3ff",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#e9edff",
+                    "surface-dim": "#d3daef",
+                    "on-primary-fixed": "#001453",
+                    "surface-container-highest": "#dce2f7",
+                    "inverse-on-surface": "#edf0ff",
+                    "tertiary": "#003272",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#173bab",
+                    "on-error": "#ffffff",
+                    "on-background": "#141b2b",
+                    "secondary-container": "#316bf3",
+                    "on-tertiary-container": "#9cbbff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "stack-xs": "4px",
+                    "stack-sm": "8px",
+                    "unit": "4px",
+                    "stack-md": "16px",
+                    "margin-desktop": "40px",
+                    "stack-xl": "48px",
+                    "stack-lg": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "display": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Sidebar Shell -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col h-full py-stack-lg z-50">
+<div class="px-stack-lg mb-stack-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">esewa Legal</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-1 px-stack-sm overflow-y-auto hide-scrollbar">
+<!-- Navigation Items Mapping -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span>Lawyer Directory</span>
+</a>
+<!-- Active State: Client Management -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary bg-primary-container/10 font-bold border-r-4 border-primary font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span>Client Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span>Case Files</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Billings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="manage_accounts">manage_accounts</span>
+<span>Sub-Admin Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>System Settings</span>
+</a>
+</nav>
+<div class="px-stack-lg mt-auto border-t border-outline-variant pt-stack-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up professional corporate headshot of a senior legal administrator in a well-lit modern office setting. The lighting is soft and flattering, creating a premium professional atmosphere. The administrator is smiling confidently, wearing a navy blue blazer and a crisp white shirt, symbolizing trust and expertise in the legal tech sector." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSL3EyRa8xCRiAqbVprFgWtzSg2r0ib3IgyEyfeU43cakJbMj4AJiVPdEqHjS8dIMhs6JtSAPTCVkt52wqY3i1RTUQX_H7L87HYZu6Ptoqy4uQiwtoFt0SpTnXqmRq6Y__5e09uAB1k7wU7hpfNMsqWSDYWA6ViUYYdZrmZmkK-quTH8VXz66MafIzebYgMV7SKAv8exqOXVJd8OnJiJwLal2z7tqaaJMyalwMxzTVlaJ3VqfQ0Wc5WbGy3MMJvKTTkm9zPBpe0iE">
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Admin User</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Global Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top AppBar Shell -->
+<header class="flex justify-between items-center h-16 ml-[280px] px-margin-desktop bg-surface border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-center gap-stack-lg flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-body-sm text-body-sm" placeholder="Search clients, entities, or contacts..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant text-on-surface font-label-md text-label-md rounded-lg hover:bg-surface-container-high transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+<span>Add Admin</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white font-label-md text-label-md rounded-lg shadow-md hover:bg-primary/90 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit_note">edit_note</span>
+<span>Create Case</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] p-margin-desktop">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Client Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage and monitor enterprise client relationships and their legal ecosystem performance.</p>
+</div>
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-white font-label-md text-label-md rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span>New Client</span>
+</button>
+</div>
+<!-- Dashboard Snapshot / Bento Style (Lightweight) -->
+<div class="grid grid-cols-4 gap-gutter">
+<div class="bg-surface p-stack-lg border border-outline-variant rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Total Clients</p>
+<div class="flex items-end justify-between">
+<span class="font-display text-[32px] text-primary">1,284</span>
+<span class="font-label-sm text-label-sm text-green-600 bg-green-50 px-2 py-1 rounded-md flex items-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> 12%
+                        </span>
+</div>
+</div>
+<div class="bg-surface p-stack-lg border border-outline-variant rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Enterprise Tier</p>
+<div class="flex items-end justify-between">
+<span class="font-display text-[32px] text-secondary">312</span>
+<span class="font-label-sm text-label-sm text-secondary-container bg-secondary-fixed-dim/20 px-2 py-1 rounded-md">Growth Phase</span>
+</div>
+</div>
+<div class="bg-surface p-stack-lg border border-outline-variant rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Active Litigation</p>
+<div class="flex items-end justify-between">
+<span class="font-display text-[32px] text-tertiary">4,902</span>
+<span class="font-label-sm text-label-sm text-on-tertiary-fixed-variant bg-tertiary-fixed px-2 py-1 rounded-md">Critical</span>
+</div>
+</div>
+<div class="bg-surface p-stack-lg border border-outline-variant rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Churn Rate</p>
+<div class="flex items-end justify-between">
+<span class="font-display text-[32px] text-on-surface">1.2%</span>
+<span class="font-label-sm text-label-sm text-on-error-container bg-error-container px-2 py-1 rounded-md">-0.4%</span>
+</div>
+</div>
+</div>
+<!-- Filter & Table Section -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden">
+<!-- Toolbar -->
+<div class="p-stack-md bg-surface-container-low border-b border-outline-variant flex flex-wrap items-center justify-between gap-stack-md">
+<div class="flex items-center gap-stack-md">
+<div class="flex items-center border border-outline-variant rounded-lg bg-surface overflow-hidden">
+<span class="px-3 text-on-surface-variant bg-surface-container">
+<span class="material-symbols-outlined text-[20px] py-2" data-icon="filter_list">filter_list</span>
+</span>
+<select class="pl-2 pr-8 py-2 bg-transparent border-none focus:ring-0 font-label-md text-label-md text-on-surface-variant cursor-pointer">
+<option>All Tiers</option>
+<option>Premium</option>
+<option>Enterprise</option>
+<option>Standard</option>
+</select>
+<div class="w-px h-6 bg-outline-variant"></div>
+<select class="pl-2 pr-8 py-2 bg-transparent border-none focus:ring-0 font-label-md text-label-md text-on-surface-variant cursor-pointer">
+<option>All Status</option>
+<option>Active</option>
+<option>Pending</option>
+<option>Suspended</option>
+</select>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline">Clear all filters</button>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors" title="Export CSV">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors" title="Print Report">
+<span class="material-symbols-outlined" data-icon="print">print</span>
+</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-stack-lg py-4 font-label-sm text-label-sm text-on-surface-variant uppercase">Company Name</th>
+<th class="px-stack-lg py-4 font-label-sm text-label-sm text-on-surface-variant uppercase">Primary Contact</th>
+<th class="px-stack-lg py-4 font-label-sm text-label-sm text-on-surface-variant uppercase">Total Cases</th>
+<th class="px-stack-lg py-4 font-label-sm text-label-sm text-on-surface-variant uppercase">Subscription Tier</th>
+<th class="px-stack-lg py-4 font-label-sm text-label-sm text-on-surface-variant uppercase">Status</th>
+<th class="px-stack-lg py-4 font-label-sm text-label-sm text-on-surface-variant uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">
+                                            A
+                                        </div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Apex Global Logistics</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Client ID: LGL-7721</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-5">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Sarah Jenkins</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant italic">Head of Legal</p>
+</div>
+</td>
+<td class="px-stack-lg py-5">
+<span class="font-label-md text-label-md text-on-surface-variant">142</span>
+</td>
+<td class="px-stack-lg py-5">
+<span class="px-3 py-1 rounded-lg bg-primary-container/10 text-primary border border-primary/20 font-label-sm text-label-sm">Enterprise</span>
+</td>
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="font-label-sm text-label-sm text-green-700">Active</span>
+</div>
+</td>
+<td class="px-stack-lg py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">
+                                            B
+                                        </div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Bluefin Tech Ventures</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Client ID: LGL-0024</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-5">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Marcus Thorne</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant italic">COO</p>
+</div>
+</td>
+<td class="px-stack-lg py-5">
+<span class="font-label-md text-label-md text-on-surface-variant">87</span>
+</td>
+<td class="px-stack-lg py-5">
+<span class="px-3 py-1 rounded-lg bg-secondary-container/10 text-secondary border border-secondary/20 font-label-sm text-label-sm">Premium</span>
+</td>
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-amber-500"></div>
+<span class="font-label-sm text-label-sm text-amber-700">Pending</span>
+</div>
+</td>
+<td class="px-stack-lg py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">
+                                            C
+                                        </div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Core Infrastructure Inc.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Client ID: LGL-9912</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-5">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Elena Rodriguez</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant italic">Legal Consultant</p>
+</div>
+</td>
+<td class="px-stack-lg py-5">
+<span class="font-label-md text-label-md text-on-surface-variant">21</span>
+</td>
+<td class="px-stack-lg py-5">
+<span class="px-3 py-1 rounded-lg bg-on-surface-variant/10 text-on-surface-variant border border-on-surface-variant/20 font-label-sm text-label-sm">Standard</span>
+</td>
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="font-label-sm text-label-sm text-green-700">Active</span>
+</div>
+</td>
+<td class="px-stack-lg py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">
+                                            D
+                                        </div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Digital Horizon Systems</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Client ID: LGL-1108</p>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-5">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Gregory Vance</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant italic">In-house Counsel</p>
+</div>
+</td>
+<td class="px-stack-lg py-5">
+<span class="font-label-md text-label-md text-on-surface-variant">0</span>
+</td>
+<td class="px-stack-lg py-5">
+<span class="px-3 py-1 rounded-lg bg-primary-container/10 text-primary border border-primary/20 font-label-sm text-label-sm">Enterprise</span>
+</td>
+<td class="px-stack-lg py-5">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-label-sm text-label-sm text-error">Suspended</span>
+</div>
+</td>
+<td class="px-stack-lg py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-stack-md bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Showing 1 to 10 of 1,284 clients</p>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded-md hover:bg-white text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="px-3 py-1 bg-primary text-white rounded-md font-label-sm">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded-md hover:bg-white text-on-surface-variant font-label-sm">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded-md hover:bg-white text-on-surface-variant font-label-sm">3</button>
+<span class="px-1">...</span>
+<button class="px-3 py-1 border border-outline-variant rounded-md hover:bg-white text-on-surface-variant font-label-sm">128</button>
+<button class="px-3 py-1 border border-outline-variant rounded-md hover:bg-white text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Hidden for management pages usually, but kept if user requires quick 'New Client' from scroll) -->
+<button class="fixed bottom-10 right-10 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all lg:hidden">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<script>
+        // Micro-interaction for hover states on rows
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.classList.add('shadow-inner');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.classList.remove('shadow-inner');
+            });
+        });
+
+        // Simple Search Filter Simulation
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('keyup', (e) => {
+            const query = e.target.value.toLowerCase();
+            const tableRows = document.querySelectorAll('tbody tr');
+            tableRows.forEach(row => {
+                const companyName = row.querySelector('p.font-semibold').textContent.toLowerCase();
+                if(companyName.includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>

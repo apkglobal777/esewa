@@ -1,0 +1,270 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>esewa Legal - Admin Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "outline-variant": "#c4c5d5",
+                    "secondary-fixed": "#dbe1ff",
+                    "inverse-primary": "#b8c4ff",
+                    "on-secondary-fixed": "#00174b",
+                    "surface-variant": "#dce2f7",
+                    "surface-container-highest": "#dce2f7",
+                    "outline": "#757684",
+                    "surface-container-high": "#e1e8fd",
+                    "primary-fixed": "#dde1ff",
+                    "background": "#f9f9ff",
+                    "primary": "#00288e",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#293040",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "on-background": "#141b2b",
+                    "surface-container": "#e9edff",
+                    "on-tertiary-fixed": "#001a42",
+                    "on-secondary-container": "#fefcff",
+                    "on-primary-fixed": "#001453",
+                    "secondary": "#0051d5",
+                    "primary-fixed-dim": "#b8c4ff",
+                    "on-tertiary-container": "#9cbbff",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-container": "#316bf3",
+                    "inverse-on-surface": "#edf0ff",
+                    "primary-container": "#1e40af",
+                    "on-surface": "#141b2b",
+                    "on-primary-fixed-variant": "#173bab",
+                    "surface-dim": "#d3daef",
+                    "surface-tint": "#3755c3",
+                    "on-error": "#ffffff",
+                    "tertiary": "#003272",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#004395",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#444653",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "tertiary-fixed": "#d8e2ff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#00489e",
+                    "on-primary-container": "#a8b8ff",
+                    "surface-container-low": "#f1f3ff",
+                    "surface": "#f9f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "container-max": "1440px",
+                    "stack-md": "16px",
+                    "margin-desktop": "40px",
+                    "unit": "4px",
+                    "stack-lg": "24px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "stack-xs": "4px",
+                    "stack-xl": "48px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9ff;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        /* Sublte animation for the background */
+        .bg-pattern {
+            background-image: radial-gradient(#00288e 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.05;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen relative">
+<!-- Background Decorative Elements -->
+<div class="absolute inset-0 z-0 bg-pattern"></div>
+<div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-secondary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- Login Container -->
+<main class="relative z-10 w-full max-w-[480px] px-margin-mobile md:px-0">
+<!-- Header / Logo Area -->
+<div class="text-center mb-stack-xl flex flex-col items-center">
+<div class="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-stack-md shadow-lg shadow-primary/20 transition-transform hover:scale-105 duration-300">
+<span class="material-symbols-outlined text-on-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">esewa <span class="text-primary font-bold">Legal</span></h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-stack-xs">Enterprise Litigation Management System</p>
+</div>
+<!-- Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-xl rounded-xl shadow-xl shadow-on-surface/5">
+<header class="mb-stack-lg">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Admin Login</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sign in to access your legal dashboard</p>
+</header>
+<form class="space-y-stack-md" id="loginForm" onsubmit="return false;">
+<!-- Email Field -->
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-on-surface" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 outline-none" id="email" name="email" placeholder="name@legal.esewa.com" required="" type="email">
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-stack-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface" for="password">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-container transition-colors" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
+<input class="w-full pl-10 pr-12 py-3 bg-surface border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 outline-none" id="password" name="password" placeholder="••••••••" required="" type="password">
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant hover:text-on-surface transition-colors p-1 rounded-md" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="eye-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center space-x-2 py-stack-xs">
+<input class="w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary/20" id="remember" type="checkbox">
+<label class="font-label-sm text-label-sm text-on-surface-variant cursor-pointer" for="remember">Remember this device for 30 days</label>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-lg font-label-md text-label-md font-bold hover:bg-primary-container transition-all duration-200 flex items-center justify-center space-x-2 group" id="submitBtn" type="submit">
+<span>Sign In</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200 text-[20px]">arrow_forward</span>
+</button>
+</form>
+<div class="mt-stack-lg pt-stack-lg border-t border-outline-variant/30 flex items-center justify-center space-x-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span class="font-label-sm text-label-sm">Secure, encrypted connection</span>
+</div>
+</div>
+<!-- Footer Footer -->
+<footer class="mt-stack-xl flex flex-col items-center space-y-stack-sm opacity-60">
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 esewa Legal Platforms. All rights reserved.</p>
+<div class="flex space-x-stack-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<span class="text-outline-variant">•</span>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<span class="text-outline-variant">•</span>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</footer>
+</main>
+<!-- Background Image Card (Atmospheric) -->
+<div class="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2 w-[380px] h-[500px] rounded-3xl overflow-hidden shadow-2xl rotate-2 opacity-80 hover:rotate-0 transition-transform duration-700">
+<div class="w-full h-full" data-alt="A high-end, minimalist law firm office interior with clean architectural lines. Polished marble floors reflect soft overhead lighting. Large floor-to-ceiling windows reveal a blurred urban skyline at twilight. The scene is professional and quiet, emphasizing authority and trust through a palette of deep blues, grays, and whites. High-fidelity glass and steel materials visible." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDek-C3nHeNCfSBH5I0hI1ieP1v4JMqBVQFbzI7_x5Tn0h4plzNhB6RKkPi01lSuC7A_Q6NTfdapKjD4dM_BKHCpfQsJqjOAYC_gGu4ZpImd2bXHcwJK9O_r3kDenS8psvGMJq-BW_nEntIecLBmhycI_JBxlAEwINwq5UTn0Y5CwDtamuMrsQNhcxQrJz0bpDE52UUbIKhO6ffNzRJQD6RBfsq4asMPJQXNS4hUnpfzRJIM4SqZdEbl2soPGjGzWWi5nQk_mFI0lM')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8">
+<p class="text-on-primary font-headline-sm text-headline-sm italic leading-tight">"Integrity and precision in every case."</p>
+<p class="text-on-primary/80 font-label-sm text-label-sm mt-2">— Legal Excellence Standard</p>
+</div>
+</div>
+<script>
+        function togglePassword() {
+            const pwdInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                eyeIcon.innerText = 'visibility_off';
+            } else {
+                pwdInput.type = 'password';
+                eyeIcon.innerText = 'visibility';
+            }
+        }
+
+        const loginForm = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const originalContent = submitBtn.innerHTML;
+            
+            // Interaction feedback
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Authenticating...</span>
+            `;
+
+            // Simulation
+            setTimeout(() => {
+                submitBtn.innerHTML = `
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span>Access Granted</span>
+                `;
+                submitBtn.classList.remove('bg-primary');
+                submitBtn.classList.add('bg-secondary');
+                
+                setTimeout(() => {
+                    alert('Login successful! Redirecting to Legal Dashboard...');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalContent;
+                    submitBtn.classList.add('bg-primary');
+                    submitBtn.classList.remove('bg-secondary');
+                }, 1000);
+            }, 1500);
+        });
+
+        // Add keyboard parallax effect to the atmospheric card
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            const card = document.querySelector('.lg\\:block');
+            if (card) {
+                card.style.transform = `translateY(-50%) rotate(2deg) translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+    </script>
+</body></html>

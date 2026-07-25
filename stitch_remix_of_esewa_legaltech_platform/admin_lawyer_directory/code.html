@@ -1,0 +1,482 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>esewa Legal Admin - Lawyer Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Scrollbar for premium feel */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #dce2f7; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #757684; }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "surface-variant": "#dce2f7",
+                        "on-primary-fixed": "#001453",
+                        "surface": "#f9f9ff",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#a8b8ff",
+                        "on-tertiary-container": "#9cbbff",
+                        "tertiary": "#003272",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#316bf3",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "on-secondary-container": "#fefcff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#3755c3",
+                        "on-surface": "#141b2b",
+                        "on-secondary-fixed": "#00174b",
+                        "inverse-surface": "#293040",
+                        "inverse-primary": "#b8c4ff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#141b2b",
+                        "tertiary-container": "#00489e",
+                        "surface-container-low": "#f1f3ff",
+                        "surface-container": "#e9edff",
+                        "outline-variant": "#c4c5d5",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#d8e2ff",
+                        "background": "#f9f9ff",
+                        "surface-dim": "#d3daef",
+                        "primary-fixed": "#dde1ff",
+                        "surface-container-highest": "#dce2f7",
+                        "on-tertiary-fixed": "#001a42",
+                        "outline": "#757684",
+                        "primary-container": "#1e40af",
+                        "primary": "#00288e",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-primary-fixed-variant": "#173bab",
+                        "surface-bright": "#f9f9ff",
+                        "secondary": "#0051d5",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e1e8fd",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "on-surface-variant": "#444653"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "stack-xs": "4px",
+                        "stack-sm": "8px",
+                        "stack-xl": "48px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Sidebar Navigation -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 flex flex-col py-stack-lg bg-surface border-r border-outline-variant z-50">
+<div class="px-stack-lg mb-stack-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">esewa Legal</h1>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Admin Portal</p>
+</div>
+<nav class="flex-1 px-stack-sm space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary bg-primary-container/10 font-bold border-r-4 border-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<span class="font-label-md text-label-md">Lawyer Directory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">group</span>
+<span class="font-label-md text-label-md">Client Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">folder_open</span>
+<span class="font-label-md text-label-md">Case Files</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">payments</span>
+<span class="font-label-md text-label-md">Billings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">manage_accounts</span>
+<span class="font-label-md text-label-md">Sub-Admin Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">settings</span>
+<span class="font-label-md text-label-md">System Settings</span>
+</a>
+</nav>
+<div class="px-stack-lg mt-auto pt-stack-lg border-t border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">
+                    JD
+                </div>
+<div>
+<p class="font-label-md text-label-md font-bold">John Doe</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Super Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant h-16 px-margin-desktop flex items-center justify-between">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary transition-all font-body-md text-body-md" placeholder="Search lawyers by name or enrollment number..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:bg-primary-container transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                    Invite Lawyer
+                </button>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-margin-desktop space-y-stack-lg">
+<!-- Summary Stats Bar -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg">
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-1">
+<span class="text-on-surface-variant text-label-sm font-semibold uppercase tracking-tight">Total Lawyers</span>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">1,248</span>
+<span class="text-secondary text-label-sm flex items-center">+12% <span class="material-symbols-outlined text-[14px]">trending_up</span></span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-1">
+<span class="text-on-surface-variant text-label-sm font-semibold uppercase tracking-tight">Verified</span>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-md text-primary font-bold">1,102</span>
+<span class="bg-secondary-fixed text-primary px-2 py-0.5 rounded text-[10px] font-bold">88%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-1">
+<span class="text-on-surface-variant text-label-sm font-semibold uppercase tracking-tight">Pending Approval</span>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-md text-tertiary font-bold">94</span>
+<span class="material-symbols-outlined text-tertiary animate-pulse">pending_actions</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-1">
+<span class="text-on-surface-variant text-label-sm font-semibold uppercase tracking-tight">Active Consultations</span>
+<div class="flex items-end justify-between">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">342</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-blue-100 border-2 border-surface"></div>
+<div class="w-6 h-6 rounded-full bg-green-100 border-2 border-surface"></div>
+<div class="w-6 h-6 rounded-full bg-purple-100 border-2 border-surface"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Advanced Filters -->
+<div class="bg-surface-container-low p-stack-md rounded-xl border border-outline-variant flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-primary text-[20px]">balance</span>
+<select class="bg-transparent border-none focus:ring-0 text-label-md font-medium text-on-surface-variant pr-8">
+<option>All Practice Areas</option>
+<option>Corporate Law</option>
+<option>Family Law</option>
+<option>Criminal Defense</option>
+<option>Intellectual Property</option>
+</select>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-primary text-[20px]">account_balance</span>
+<select class="bg-transparent border-none focus:ring-0 text-label-md font-medium text-on-surface-variant pr-8">
+<option>All Jurisdictions</option>
+<option>Bar Council of Delhi</option>
+<option>Bar Council of Maharashtra</option>
+<option>Karnataka State Bar</option>
+</select>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
+<select class="bg-transparent border-none focus:ring-0 text-label-md font-medium text-on-surface-variant pr-8">
+<option>All Status</option>
+<option>Verified</option>
+<option>Pending</option>
+<option>Suspended</option>
+</select>
+</div>
+<button class="ml-auto flex items-center gap-2 text-primary font-bold hover:underline transition-all">
+<span class="material-symbols-outlined">filter_list</span>
+                    More Filters
+                </button>
+</div>
+<!-- Lawyer Profiles Data Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-stack-lg">
+<!-- Profile Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg hover:shadow-lg transition-all group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex gap-4">
+<img class="w-16 h-16 rounded-xl object-cover border-2 border-surface-variant shadow-sm" data-alt="A professional headshot of a middle-aged male lawyer wearing a formal navy suit and spectacles. He has a confident, approachable expression and is set against a clean, minimalist architectural background with soft natural lighting. The style is corporate, high-end, and evokes trust and authority, perfectly fitting a premium legal portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgAhCDjN6hmuqRT6YyjAFO0ksPLAlWKHu-BDlcUpCRPYBk-ZKgcu3YtQ8FzXON6BkkeTCsORiO3fWt9sqgVJ2egqjA65Zz9-cV1F81k5ycN8vhEtLt2aUX5AlLKI8Sn8mabwp25FwIm-w7b0-VwdS6SYOLU7SNEZEjT_N0jFoPYDBfiF8_n48kjTHH9fDiiIyDxtBStlJWcPZeWK3MVm2fhfU3ocxTz9WKBS-UdT02jcC8JPqhA1NoP8ApXzZkxPqGFw5rIZ8FZDY">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-on-surface font-bold">Adv. Rajesh Khanna</h3>
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-label-sm text-on-surface-variant font-medium">ENR: ND/1042/2008</p>
+</div>
+</div>
+<div class="bg-secondary-fixed text-primary px-3 py-1 rounded-full text-[10px] font-extrabold uppercase">Verified</div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/50">
+<div>
+<p class="text-label-sm text-on-surface-variant">Practice Area</p>
+<p class="text-body-sm font-semibold">Corporate Law</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Experience</p>
+<p class="text-body-sm font-semibold">15 Years</p>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-2">
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg text-label-md font-bold transition-all hover:bg-primary-container active:scale-95">View Profile</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<button class="w-full py-2 border border-primary/20 text-primary rounded-lg text-label-md font-bold hover:bg-primary-fixed/30 transition-all">Manage Documents</button>
+</div>
+</div>
+<!-- Profile Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg hover:shadow-lg transition-all group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-tertiary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex gap-4">
+<img class="w-16 h-16 rounded-xl object-cover border-2 border-surface-variant shadow-sm" data-alt="A professional headshot of a younger female lawyer with a sharp, professional bob haircut, wearing a black blazer. She is smiling warmly at the camera, standing in a brightly lit modern office with glass walls in the blurred background. The image has a clean, high-contrast look suitable for a professional directory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa7XeBdzhglusHpvDsv9_Nc3LzpHvZOA1GD_EJx6Ukk93ijlBUPuo5RM3eGB6fcnmDQt_sMxdPlABla6r6t77bwGmqpCxW_ZzDb1njR0kijConHq_OckZ5IsdNYoFEp5svm5KvKKpZqxKETlCOlT9q7HDEl7eg0AdpwqR1P9XOE7WFfKSTQoVhAK81FLepZCPQzmp3OrsskX11-VxO-mm34MF6DX4Iqk5gWiByqB_GpZBhaOwBsgvMi9O3PdgM3ePE4LxvGmzYJik">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-on-surface font-bold">Adv. Priya Sharma</h3>
+<span class="material-symbols-outlined text-outline text-[18px]">verified</span>
+</div>
+<p class="text-label-sm text-on-surface-variant font-medium">ENR: MH/4591/2015</p>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-tertiary px-3 py-1 rounded-full text-[10px] font-extrabold uppercase">Pending</div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/50">
+<div>
+<p class="text-label-sm text-on-surface-variant">Practice Area</p>
+<p class="text-body-sm font-semibold">Family Law</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Experience</p>
+<p class="text-body-sm font-semibold">8 Years</p>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-2">
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg text-label-md font-bold transition-all hover:bg-primary-container active:scale-95">View Profile</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<button class="w-full py-2 border border-primary/20 text-primary rounded-lg text-label-md font-bold hover:bg-primary-fixed/30 transition-all">Manage Documents</button>
+</div>
+</div>
+<!-- Profile Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg hover:shadow-lg transition-all group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex gap-4">
+<img class="w-16 h-16 rounded-xl object-cover border-2 border-surface-variant shadow-sm" data-alt="A portrait of a distinguished senior male advocate with graying hair, wearing traditional legal robes (a black band and coat). He is seated in a library filled with leather-bound law books, conveying wisdom and decades of experience. The lighting is warm and dramatic, emphasizing the academic and serious nature of his profession." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYMFVVCf9j-UK2cNOW3_17nviR289W2AwPSkXbM5bplSxDMaWM_c1ZJHVuUVl2PbkxUhrXpcS4ktrOk_KHDKrSuV67pE-sN1QGJxrkb3AsuWzOhPfabA9i0XxMRSp6ksZIiJzFA4RaodQNpjvwvO23k6_ytidvZ9bCfCfKejaTupQGuYvDIM4cRQHIi8LL8oGLkG3j2DtudVDuCUUwn-XxZVjmwOoBLmv5-19UBWvh3dcCBk5F9p6lSjhlg7uL91rHFzIeJRnV7Cs">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-on-surface font-bold">Adv. Vikram Singh</h3>
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-label-sm text-on-surface-variant font-medium">ENR: UP/882/1995</p>
+</div>
+</div>
+<div class="bg-secondary-fixed text-primary px-3 py-1 rounded-full text-[10px] font-extrabold uppercase">Verified</div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/50">
+<div>
+<p class="text-label-sm text-on-surface-variant">Practice Area</p>
+<p class="text-body-sm font-semibold">Criminal Law</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Experience</p>
+<p class="text-body-sm font-semibold">28 Years</p>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-2">
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg text-label-md font-bold transition-all hover:bg-primary-container active:scale-95">View Profile</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<button class="w-full py-2 border border-primary/20 text-primary rounded-lg text-label-md font-bold hover:bg-primary-fixed/30 transition-all">Manage Documents</button>
+</div>
+</div>
+<!-- Profile Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg hover:shadow-lg transition-all group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex gap-4">
+<img class="w-16 h-16 rounded-xl object-cover border-2 border-surface-variant shadow-sm" data-alt="Professional headshot of a female lawyer in her late 30s, wearing a tailored cream blazer. She has a bright, intelligent gaze and is leaning slightly against a white marble wall. The atmosphere is high-fashion corporate with a focus on elite legal services. Minimalist and very professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC9KSiOs2i_siZVgH0Nw-DEIhRuWaoYlrDdypKFRejPvnmhU6zyAPSAU5DIwNTEx4yG-wgvhS4kxYEBdIxRPb6EFZDIAMCVWn1hG0j8z0Suoj6lINndhBbFtSIgR4BKZzqhUizYA7UCpqqsQFryiG94e6kMLq0LXSBxt3eK07d8VT3EYegTTzWOXIInKOQqe6PU_p-xgwhGMyP_hOAwpKe5cR58J4YpQ7cZiRUfzVAbfFTnli_jneBUuEOmHRKaL0xhd2mzSihjq4">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-on-surface font-bold">Adv. Ananya Roy</h3>
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-label-sm text-on-surface-variant font-medium">ENR: WB/6612/2012</p>
+</div>
+</div>
+<div class="bg-secondary-fixed text-primary px-3 py-1 rounded-full text-[10px] font-extrabold uppercase">Verified</div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/50">
+<div>
+<p class="text-label-sm text-on-surface-variant">Practice Area</p>
+<p class="text-body-sm font-semibold">IP Law</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Experience</p>
+<p class="text-body-sm font-semibold">12 Years</p>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-2">
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg text-label-md font-bold transition-all hover:bg-primary-container active:scale-95">View Profile</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<button class="w-full py-2 border border-primary/20 text-primary rounded-lg text-label-md font-bold hover:bg-primary-fixed/30 transition-all">Manage Documents</button>
+</div>
+</div>
+<!-- Profile Card 5 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg hover:shadow-lg transition-all group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-error opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container flex items-center justify-center border-2 border-error-container shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-4xl">person_off</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-on-surface font-bold">Adv. Sanjay Gupta</h3>
+<span class="material-symbols-outlined text-error text-[18px]" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+<p class="text-label-sm text-on-surface-variant font-medium">ENR: HR/223/2005</p>
+</div>
+</div>
+<div class="bg-error-container text-error px-3 py-1 rounded-full text-[10px] font-extrabold uppercase">Suspended</div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-outline-variant/50">
+<div>
+<p class="text-label-sm text-on-surface-variant">Practice Area</p>
+<p class="text-body-sm font-semibold">Civil Litigation</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Experience</p>
+<p class="text-body-sm font-semibold">18 Years</p>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-2">
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg text-label-md font-bold transition-all hover:bg-primary-container active:scale-95">View Profile</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<button class="w-full py-2 border border-error/20 text-error rounded-lg text-label-md font-bold hover:bg-error-container transition-all">Reason for Suspension</button>
+</div>
+</div>
+<!-- Add New Entry Placeholder Card -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-stack-lg flex flex-col items-center justify-center text-center hover:bg-surface-container-low transition-all cursor-pointer group min-h-[300px]">
+<div class="w-16 h-16 rounded-full bg-primary-fixed/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">add</span>
+</div>
+<h3 class="font-headline-sm text-on-surface-variant font-bold">Register New Lawyer</h3>
+<p class="text-label-md text-on-surface-variant max-w-[200px]">Start the enrollment verification process for a new advocate.</p>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between pt-stack-lg border-t border-outline-variant">
+<p class="text-label-md text-on-surface-variant">Showing <span class="font-bold text-on-surface">1 - 12</span> of 1,248 lawyers</p>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 border border-outline-variant rounded-lg flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 bg-primary text-on-primary rounded-lg font-bold">1</button>
+<button class="w-10 h-10 border border-outline-variant rounded-lg flex items-center justify-center hover:bg-surface-container transition-colors">2</button>
+<button class="w-10 h-10 border border-outline-variant rounded-lg flex items-center justify-center hover:bg-surface-container transition-colors">3</button>
+<span class="px-2">...</span>
+<button class="w-10 h-10 border border-outline-variant rounded-lg flex items-center justify-center hover:bg-surface-container transition-colors">104</button>
+<button class="w-10 h-10 border border-outline-variant rounded-lg flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple interaction for the search bar highlight
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchContainer = searchInput.parentElement;
+        
+        searchInput.addEventListener('focus', () => {
+            searchContainer.querySelector('.material-symbols-outlined').classList.add('text-primary');
+        });
+        
+        searchInput.addEventListener('blur', () => {
+            searchContainer.querySelector('.material-symbols-outlined').classList.remove('text-primary');
+        });
+
+        // Hover effect for stat cards
+        const statCards = document.querySelectorAll('.bg-surface-container-lowest.p-stack-lg');
+        statCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'transform 0.2s ease-out';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>esewa Legal Admin - Case Monitoring</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "background": "#f9f9ff",
+                    "inverse-surface": "#293040",
+                    "tertiary-fixed": "#d8e2ff",
+                    "tertiary-container": "#00489e",
+                    "outline": "#757684",
+                    "primary-fixed": "#dde1ff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "on-secondary-fixed": "#00174b",
+                    "primary-container": "#1e40af",
+                    "on-surface-variant": "#444653",
+                    "surface-variant": "#dce2f7",
+                    "surface-bright": "#f9f9ff",
+                    "surface": "#f9f9ff",
+                    "on-primary-container": "#a8b8ff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "primary-fixed-dim": "#b8c4ff",
+                    "primary": "#00288e",
+                    "inverse-primary": "#b8c4ff",
+                    "surface-tint": "#3755c3",
+                    "on-tertiary-fixed-variant": "#004395",
+                    "on-secondary-container": "#fefcff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e1e8fd",
+                    "secondary-fixed": "#dbe1ff",
+                    "outline-variant": "#c4c5d5",
+                    "secondary": "#0051d5",
+                    "on-surface": "#141b2b",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#001a42",
+                    "surface-container-low": "#f1f3ff",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#e9edff",
+                    "surface-dim": "#d3daef",
+                    "on-primary-fixed": "#001453",
+                    "surface-container-highest": "#dce2f7",
+                    "inverse-on-surface": "#edf0ff",
+                    "tertiary": "#003272",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#173bab",
+                    "on-error": "#ffffff",
+                    "on-background": "#141b2b",
+                    "secondary-container": "#316bf3",
+                    "on-tertiary-container": "#9cbbff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "stack-xs": "4px",
+                    "stack-sm": "8px",
+                    "unit": "4px",
+                    "stack-md": "16px",
+                    "margin-desktop": "40px",
+                    "stack-xl": "48px",
+                    "stack-lg": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "display": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #dce2f7; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c4c5d5; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-white">
+<!-- Side Navigation Bar -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 flex flex-col h-full py-stack-lg bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline z-50">
+<div class="px-stack-lg mb-stack-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">esewa Legal</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-1 px-stack-sm overflow-y-auto">
+<a class="flex items-center gap-3 px-stack-md py-stack-sm rounded-lg transition-all duration-200 ease-in-out text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-stack-md py-stack-sm rounded-lg transition-all duration-200 ease-in-out text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="font-label-md text-label-md">Lawyer Directory</span>
+</a>
+<a class="flex items-center gap-3 px-stack-md py-stack-sm rounded-lg transition-all duration-200 ease-in-out text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Client Management</span>
+</a>
+<!-- Active State: Case Files -->
+<a class="flex items-center gap-3 px-stack-md py-stack-sm rounded-lg text-primary dark:text-inverse-primary bg-primary-container/10 dark:bg-primary-container/20 font-bold border-r-4 border-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-md text-label-md">Case Files</span>
+</a>
+<a class="flex items-center gap-3 px-stack-md py-stack-sm rounded-lg transition-all duration-200 ease-in-out text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Billings</span>
+</a>
+<a class="flex items-center gap-3 px-stack-md py-stack-sm rounded-lg transition-all duration-200 ease-in-out text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">manage_accounts</span>
+<span class="font-label-md text-label-md">Sub-Admin Management</span>
+</a>
+<a class="flex items-center gap-3 px-stack-md py-stack-sm rounded-lg transition-all duration-200 ease-in-out text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">System Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-stack-lg border-t border-outline-variant pt-stack-md">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full bg-surface-container-high object-cover" data-alt="A professional studio headshot of a senior legal administrator in a navy blue suit, set against a blurred modern office background with soft neutral tones, conveying authority and trust. The lighting is cinematic and clean, typical of corporate professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-BO-R817g_Wt40fGuJADhe0Q5yHPNadavEboAgLj8IHCf4VRBGOJ6Bzbm07mo8fI9xPvYXAW5Qc2EtLRdkZ-QrZHYS8j6jYWunOMV0Ry9suzdXyn2-ewbrr0l-piG7kIJpZkKkyCDOvZJhmLZJ1kRGhUlvBD5UKbdri8MIh2-z6PFkn8Bw8_h2wi5OvuxnEjEbkJzXXUX49YivOSlwFck5WzAfVNRPAdaaRN61PNcxq56ra7Fx5zJLhUpK07_B9BNLbe9fCVpU_8">
+<div>
+<p class="text-label-md font-bold">Animesh Rai</p>
+<p class="text-label-sm text-on-surface-variant">Super Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center h-16 ml-[280px] px-margin-desktop bg-surface dark:bg-surface-dim sticky top-0 z-40 border-b border-outline-variant dark:border-outline">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-body-sm focus:ring-2 focus:ring-primary/20" placeholder="Search Case IDs, Lawyers, or Clients..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-stack-lg">
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant mx-stack-sm"></div>
+<div class="flex gap-stack-sm">
+<button class="px-stack-md py-2 border border-outline text-on-surface font-label-md rounded-lg hover:bg-surface-container-high transition-colors">
+                    Add Admin
+                </button>
+<button class="px-stack-md py-2 bg-primary text-white font-label-md rounded-lg shadow-sm hover:bg-primary-container transition-transform active:scale-95">
+                    Create Case
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[280px] p-margin-desktop min-h-screen">
+<section class="max-w-container-max mx-auto space-y-stack-xl">
+<!-- Page Header & Workload Summary -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-end">
+<div class="lg:col-span-1 space-y-stack-sm">
+<h2 class="font-headline-lg text-headline-lg text-primary">Case Monitoring Dashboard</h2>
+<p class="text-body-md text-on-surface-variant">Live overview of litigation workflows and lawyer capacity across practice areas.</p>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-stack-md pt-stack-md">
+<div class="p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm">
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Total Active</p>
+<p class="text-headline-md font-bold text-primary">1,284</p>
+<p class="text-label-sm text-green-600 flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +4.2%
+                            </p>
+</div>
+<div class="p-stack-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm">
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">SLA at Risk</p>
+<p class="text-headline-md font-bold text-error">24</p>
+<p class="text-label-sm text-error flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> High Priority
+                            </p>
+</div>
+</div>
+</div>
+<!-- Workload Summary Chart (Bento Style) -->
+<div class="lg:col-span-2 glass-card p-stack-lg rounded-xl border border-outline-variant shadow-sm relative overflow-hidden group">
+<div class="flex justify-between items-center mb-stack-lg">
+<h3 class="font-headline-sm text-headline-sm">Workload Summary</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-label-sm bg-surface-container border border-outline-variant rounded-full">Weekly</button>
+<button class="px-3 py-1 text-label-sm bg-primary text-white rounded-full">Practice Area</button>
+</div>
+</div>
+<div class="flex items-end justify-between h-40 gap-stack-md">
+<!-- Simulated Chart Bars -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-secondary-container/20 rounded-t-lg relative group h-full">
+<div class="absolute bottom-0 w-full bg-secondary-container rounded-t-lg transition-all duration-700 h-[85%] group-hover:h-[90%]"></div>
+</div>
+<span class="text-label-sm text-on-surface-variant">Corporate</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary/20 rounded-t-lg relative h-full">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-700 h-[60%] group-hover:h-[65%]"></div>
+</div>
+<span class="text-label-sm text-on-surface-variant">Family</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-tertiary-container/20 rounded-t-lg relative h-full">
+<div class="absolute bottom-0 w-full bg-tertiary-container rounded-t-lg transition-all duration-700 h-[45%] group-hover:h-[50%]"></div>
+</div>
+<span class="text-label-sm text-on-surface-variant">Criminal</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-secondary-fixed-dim/40 rounded-t-lg relative h-full">
+<div class="absolute bottom-0 w-full bg-secondary-container/70 rounded-t-lg transition-all duration-700 h-[75%] group-hover:h-[80%]"></div>
+</div>
+<span class="text-label-sm text-on-surface-variant">Property</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary-fixed-dim/40 rounded-t-lg relative h-full">
+<div class="absolute bottom-0 w-full bg-primary/80 rounded-t-lg transition-all duration-700 h-[30%] group-hover:h-[35%]"></div>
+</div>
+<span class="text-label-sm text-on-surface-variant">IP Law</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Kanban Board -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter overflow-x-auto pb-stack-lg">
+<!-- Column: New -->
+<div class="flex flex-col gap-stack-lg min-w-[300px]">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed"></span>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">New</h4>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-label-sm font-bold">12</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">add</button>
+</div>
+<div class="space-y-stack-md">
+<!-- Case Card -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+<div class="flex justify-between items-start mb-stack-sm">
+<span class="bg-primary-container/10 text-primary px-2 py-0.5 rounded text-label-sm font-bold">CASE-7821</span>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-label-sm font-bold">High</span>
+</div>
+<h5 class="font-bold text-body-md mb-1">Corporate Merger Dispute</h5>
+<p class="text-label-md text-on-surface-variant mb-stack-md">Client: Global Logistics Nepal</p>
+<div class="flex items-center justify-between pt-stack-sm border-t border-outline-variant/30">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full border-2 border-white" data-alt="Close-up portrait of a professional lawyer, mid-40s, with a confident smile, wearing a charcoal grey suit and white shirt. Background is a warm-toned legal library with out-of-focus law books. Corporate professional style with sharp focus on the subject." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMHi23SyinQHdgQGBgyZan-FyxKCX323gJ6Xfyov7PsskC4xXnRoBtASsrkJayNOBpAXPO8cY6hPwL-hEfJ2a8nKLMnh_AIkpcqQh_2--hoynV_rcQrakor955VR3NsGfPhkiBysYzb6xETmmRiqEVXcShU74bzkVLEl2mVWfqjuvrsXQY0mszPUTtLaBwhkhV8LkZJv60lVdiccpmOxnlZbgPap82fD6LzMb9P67nianbsEFpt2108G77HMfBCiFscSAVLAMoXUE">
+<span class="text-label-sm">Adv. S. Karki</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="text-label-sm">2h left</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+<div class="flex justify-between items-start mb-stack-sm">
+<span class="bg-primary-container/10 text-primary px-2 py-0.5 rounded text-label-sm font-bold">CASE-8012</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded text-label-sm font-bold">Medium</span>
+</div>
+<h5 class="font-bold text-body-md mb-1">Family Estate Settlement</h5>
+<p class="text-label-md text-on-surface-variant mb-stack-md">Client: Dr. Ramesh Pathak</p>
+<div class="flex items-center justify-between pt-stack-sm border-t border-outline-variant/30">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-[10px] text-white font-bold">PT</div>
+<span class="text-label-sm">Adv. P. Thapa</span>
+</div>
+<div class="flex items-center gap-1 text-green-600">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="text-label-sm">On Track</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: In Progress -->
+<div class="flex flex-col gap-stack-lg min-w-[300px]">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">In Progress</h4>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-label-sm font-bold">28</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant">more_horiz</button>
+</div>
+<div class="space-y-stack-md">
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+<div class="flex justify-between items-start mb-stack-sm">
+<span class="bg-primary-container/10 text-primary px-2 py-0.5 rounded text-label-sm font-bold">CASE-4412</span>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-label-sm font-bold">High</span>
+</div>
+<h5 class="font-bold text-body-md mb-1">Patent Infringement Trial</h5>
+<p class="text-label-md text-on-surface-variant mb-stack-md">Client: TechSphere Innovations</p>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mb-stack-md overflow-hidden">
+<div class="bg-secondary w-[70%] h-full rounded-full"></div>
+</div>
+<div class="flex items-center justify-between pt-stack-sm border-t border-outline-variant/30">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full border-2 border-white" data-alt="Professional headshot of a female lawyer in her 30s, sharp features, wearing a tailored navy blazer, standing against a high-end architectural glass background. Bright, natural daylight illumination, clean corporate aesthetic, modern professional look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvxchkGl_Pik7Rml1-hcRPjUtolzqJeUJLYBP_U9xTCrK4eNR1ZUuMOFJ5vnk1nIL7LXVBlfeiYiVXWTnlz11usKNSdA1oeLLDoZWTyJPJHNJ-Ex_3iuflORJHGYa5Nq2VjRQBKESJ7nFEYvkM-a5qxjKVS0GSDlyjIs1KrvsHTzAiNaCFZEpz9XcsrzhbHx5OdkSoctBG12KeXYnFcTcSdoUDX4mW1WwxQ1ZLnjM5wbKxFyNL-6fQGlF_xvNStfGG5zUQ8fm4qls">
+<span class="text-label-sm">Adv. M. Shrestha</span>
+</div>
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+<span class="text-label-sm">Delayed</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm border-l-4 border-l-secondary/50">
+<div class="flex justify-between items-start mb-stack-sm">
+<span class="bg-primary-container/10 text-primary px-2 py-0.5 rounded text-label-sm font-bold">CASE-9920</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded text-label-sm font-bold">Low</span>
+</div>
+<h5 class="font-bold text-body-md mb-1">Contract Review (NDA)</h5>
+<p class="text-label-md text-on-surface-variant mb-stack-md">Client: Apex Retail Group</p>
+<div class="flex items-center justify-between pt-stack-sm border-t border-outline-variant/30">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full border-2 border-white" data-alt="Headshot of a middle-aged male legal consultant, friendly demeanor, wearing a light blue dress shirt and wireframe glasses. Setting is a modern open-plan office with soft sunlight. High-quality corporate photography style, natural lighting, calm and professional atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIevDxOPzfHeeNk0dnXbbiJ4maNNHpeI1x8swIO6Z45LtCFbyy0Hi2f-JoIagWtihtSJNdSPYY0E6wyUX-8Bj-UZjjeQfxeqX1yybLrl9HLGNZyoAx4wpDbAQhL11eePk5ZrZH9twTtft0v2eMPrzYYAFXXh3Thfw49KN1hIv77CBj2pvoIBZoosEMNrcEdLDKM9hkoWVHq79b1DQoczOpSIT0NC6bsy_TPCz7_dRcAkNipgTCADuz-rWnztqLAOp39Fgs1fvCzps">
+<span class="text-label-sm">Adv. R. Joshi</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">flag</span>
+<span class="text-label-sm">85% Done</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Review -->
+<div class="flex flex-col gap-stack-lg min-w-[300px]">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">Review</h4>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-label-sm font-bold">15</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant">sync</button>
+</div>
+<div class="space-y-stack-md">
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+<div class="flex justify-between items-start mb-stack-sm">
+<span class="bg-primary-container/10 text-primary px-2 py-0.5 rounded text-label-sm font-bold">CASE-6623</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded text-label-sm font-bold">Medium</span>
+</div>
+<h5 class="font-bold text-body-md mb-1">Tenant Eviction Appeal</h5>
+<p class="text-label-md text-on-surface-variant mb-stack-md">Client: Skyline Apartments</p>
+<div class="flex items-center gap-stack-sm mb-stack-md">
+<span class="material-symbols-outlined text-tertiary-container">history_edu</span>
+<span class="text-label-sm italic text-on-surface-variant">Final Draft Submitted</span>
+</div>
+<div class="flex items-center justify-between pt-stack-sm border-t border-outline-variant/30">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-[10px] text-white font-bold">AK</div>
+<span class="text-label-sm">Adv. A. Khan</span>
+</div>
+<div class="flex items-center gap-1 text-tertiary-container">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="text-label-sm">Pending Admin</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Completed -->
+<div class="flex flex-col gap-stack-lg min-w-[300px]">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">Completed</h4>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-label-sm font-bold">142</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant">task_alt</button>
+</div>
+<div class="space-y-stack-md opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-start mb-stack-sm">
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded text-label-sm font-bold">CASE-5022</span>
+<span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-label-sm font-bold">Success</span>
+</div>
+<h5 class="font-bold text-body-md mb-1">Land Acquisition Settlement</h5>
+<p class="text-label-md text-on-surface-variant mb-stack-md">Client: Nepal Road Dept.</p>
+<div class="flex items-center justify-between pt-stack-sm border-t border-outline-variant/30">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full border-2 border-white" data-alt="Portrait of a young, energetic male lawyer in a modern slim-fit suit, standing in front of a blurred legal courtroom setting. Vibrant, warm lighting accents, high-fidelity corporate photography focusing on professionalism and approachability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBciO42rAjNyHFM5WiTBmQ6VcWy1C4-B_yIn2gZSmmqDNx-HeZcfE48Fa-sKGc1299bwtlTpgHZu0X8e3spPyq4LGc6hZh4o8YTOl2tbv_21d9osvrh7YFJGWYBASSaiG17W-rFqD8J06rRPMtBAMIAz8plj4eb2AydSqarwVvDH8Orua9NMOrZBqqeRSSTpymU0ZBURQxaf-rSZFG1XzhaqC7ReMSO5xMra_oc6X-Km07M5YGBrGKFc8Ic5UiXkxRS8wkJq80TuEg">
+<span class="text-label-sm">Adv. K. Rana</span>
+</div>
+<div class="flex items-center gap-1 text-green-600">
+<span class="material-symbols-outlined text-[16px]">done_all</span>
+<span class="text-label-sm">Archived</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed List View (Alternate pattern) -->
+<div class="space-y-stack-lg">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm">Expiring Soon (Critical SLAs)</h3>
+<button class="text-primary font-label-md hover:underline">View All Critical Cases</button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-stack-lg py-4 font-label-sm text-on-surface-variant uppercase">Case ID</th>
+<th class="px-stack-lg py-4 font-label-sm text-on-surface-variant uppercase">Client Name</th>
+<th class="px-stack-lg py-4 font-label-sm text-on-surface-variant uppercase">Practice Area</th>
+<th class="px-stack-lg py-4 font-label-sm text-on-surface-variant uppercase">Deadline</th>
+<th class="px-stack-lg py-4 font-label-sm text-on-surface-variant uppercase">SLA Status</th>
+<th class="px-stack-lg py-4 font-label-sm text-on-surface-variant uppercase text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-stack-lg py-4">
+<span class="font-bold text-primary">CASE-1129</span>
+</td>
+<td class="px-stack-lg py-4">
+<div class="flex flex-col">
+<span class="font-bold text-body-sm">Prakash Gupta</span>
+<span class="text-label-sm text-on-surface-variant">Individual</span>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="px-2 py-1 bg-surface-container rounded-lg text-label-sm">Criminal Defense</span>
+</td>
+<td class="px-stack-lg py-4">
+<div class="flex flex-col">
+<span class="text-body-sm font-bold">Oct 24, 2023</span>
+<span class="text-label-sm text-error">18 hours left</span>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<div class="w-32 bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-error w-[92%] h-full rounded-full animate-pulse"></div>
+</div>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors">
+<span class="material-symbols-outlined text-primary">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-stack-lg py-4">
+<span class="font-bold text-primary">CASE-3482</span>
+</td>
+<td class="px-stack-lg py-4">
+<div class="flex flex-col">
+<span class="font-bold text-body-sm">Everest Textiles Ltd.</span>
+<span class="text-label-sm text-on-surface-variant">Corporate</span>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="px-2 py-1 bg-surface-container rounded-lg text-label-sm">Commercial Law</span>
+</td>
+<td class="px-stack-lg py-4">
+<div class="flex flex-col">
+<span class="text-body-sm font-bold">Oct 26, 2023</span>
+<span class="text-label-sm text-on-surface-variant">2 days left</span>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<div class="w-32 bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary w-[65%] h-full rounded-full"></div>
+</div>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors">
+<span class="material-symbols-outlined text-primary">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button (FAB) - Suppression Logic: Rendered for Dashboard/Home context -->
+<button class="fixed bottom-margin-desktop right-margin-desktop w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-[28px]">add_circle</span>
+<span class="absolute right-16 bg-inverse-surface text-inverse-on-surface px-4 py-2 rounded-lg text-label-md whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity">Quick Case Intake</span>
+</button>
+<script>
+        // Micro-interactions for Kanban cards
+        document.querySelectorAll('.cursor-pointer').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Search Bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

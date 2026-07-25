@@ -1,0 +1,515 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>esewa Legal Admin Portal</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Chart.js for the revenue chart -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9ff",
+                        "inverse-surface": "#293040",
+                        "tertiary-fixed": "#d8e2ff",
+                        "tertiary-container": "#00489e",
+                        "outline": "#757684",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-secondary-fixed": "#00174b",
+                        "primary-container": "#1e40af",
+                        "on-surface-variant": "#444653",
+                        "surface-variant": "#dce2f7",
+                        "surface-bright": "#f9f9ff",
+                        "surface": "#f9f9ff",
+                        "on-primary-container": "#a8b8ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "primary": "#00288e",
+                        "inverse-primary": "#b8c4ff",
+                        "surface-tint": "#3755c3",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "on-secondary-container": "#fefcff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e1e8fd",
+                        "secondary-fixed": "#dbe1ff",
+                        "outline-variant": "#c4c5d5",
+                        "secondary": "#0051d5",
+                        "on-surface": "#141b2b",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#001a42",
+                        "surface-container-low": "#f1f3ff",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#e9edff",
+                        "surface-dim": "#d3daef",
+                        "on-primary-fixed": "#001453",
+                        "surface-container-highest": "#dce2f7",
+                        "inverse-on-surface": "#edf0ff",
+                        "tertiary": "#003272",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#173bab",
+                        "on-error": "#ffffff",
+                        "on-background": "#141b2b",
+                        "secondary-container": "#316bf3",
+                        "on-tertiary-container": "#9cbbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "stack-xs": "4px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "stack-md": "16px",
+                        "margin-desktop": "40px",
+                        "stack-xl": "48px",
+                        "stack-lg": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-container { position: relative; height: 320px; width: 100%; }
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex">
+<!-- SideNavBar Anchor -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col py-stack-lg z-50">
+<div class="px-stack-lg mb-stack-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">esewa Legal</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-stack-lg py-3 text-primary dark:text-inverse-primary bg-primary-container/10 dark:bg-primary-container/20 font-bold border-r-4 border-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center px-stack-lg py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">gavel</span>
+<span class="font-label-md text-label-md">Lawyer Directory</span>
+</a>
+<a class="flex items-center px-stack-lg py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-label-md text-label-md">Client Management</span>
+</a>
+<a class="flex items-center px-stack-lg py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">folder_open</span>
+<span class="font-label-md text-label-md">Case Files</span>
+</a>
+<a class="flex items-center px-stack-lg py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-label-md text-label-md">Billings</span>
+</a>
+<a class="flex items-center px-stack-lg py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">manage_accounts</span>
+<span class="font-label-md text-label-md">Sub-Admin Management</span>
+</a>
+<a class="flex items-center px-stack-lg py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-label-md text-label-md">System Settings</span>
+</a>
+</nav>
+<div class="px-stack-lg mt-auto">
+<div class="flex items-center p-3 rounded-lg bg-surface-container">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a senior legal administrator in a modern office environment. The person is wearing a navy blue blazer and has a confident, approachable expression. The lighting is bright and professional with a blurred high-end office background featuring glass partitions and soft warm light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDrYaziZkqVHosM0E4o8AC7JeUIuZRa6e0bOsN36cXf0odLZkTV345cBCs0Bxm2SjplKnbh05ft2kMVSXfprWWYVby3etAXadJ5T6GEGh7BQrFGh8Z1r5y1utTEF0EPp-ycl7--IrSDT8QOvNbp6otH4IatfJzd4CGPEurjj-6ccic2OaCfD26LdhwP8JradGatwoFfE4oyRdx_7xdPtg94TR4wLzEmQgKGc9ak_RRxM3KBKpeeO8chM-qX2CHK-dkRrmTb4aYM9g">
+</div>
+<div class="ml-3">
+<p class="font-label-md text-label-md font-bold text-on-surface">Admin User</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Super Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-[280px] flex-1 min-h-screen">
+<!-- TopNavBar Anchor -->
+<header class="h-16 flex justify-between items-center px-margin-desktop sticky top-0 z-40 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline">
+<div class="flex items-center space-x-gutter">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search for cases, lawyers..." type="text">
+</div>
+</div>
+<div class="flex items-center space-x-stack-lg">
+<button class="flex items-center px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-container transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[20px] mr-2">add</span>
+                    Create Case
+                </button>
+<div class="flex items-center space-x-stack-sm border-l border-outline-variant pl-stack-lg">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-margin-desktop space-y-gutter max-w-container-max mx-auto">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Dashboard Overview</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time system health and platform metrics.</p>
+</div>
+<div class="flex items-center space-x-stack-sm text-on-surface-variant bg-surface-container rounded-lg px-4 py-2">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span class="font-label-md text-label-md">Oct 24 - Oct 30, 2023</span>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm flex items-center">+12.5% <span class="material-symbols-outlined text-xs ml-1">trending_up</span></span>
+</div>
+<div class="mt-4">
+<p class="text-on-surface-variant font-label-md text-label-md">Total Users</p>
+<h3 class="text-headline-md font-headline-md text-on-surface">14,284</h3>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-tertiary-container/10 rounded-lg flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm flex items-center">+5.2% <span class="material-symbols-outlined text-xs ml-1">trending_up</span></span>
+</div>
+<div class="mt-4">
+<p class="text-on-surface-variant font-label-md text-label-md">Active Lawyers</p>
+<h3 class="text-headline-md font-headline-md text-on-surface">2,850</h3>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-secondary-container/10 rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">description</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm flex items-center">+18.3% <span class="material-symbols-outlined text-xs ml-1">trending_up</span></span>
+</div>
+<div class="mt-4">
+<p class="text-on-surface-variant font-label-md text-label-md">Docs Processed</p>
+<h3 class="text-headline-md font-headline-md text-on-surface">98,240</h3>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-on-error-container/10 rounded-lg flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm flex items-center">+2.4% <span class="material-symbols-outlined text-xs ml-1">trending_up</span></span>
+</div>
+<div class="mt-4">
+<p class="text-on-surface-variant font-label-md text-label-md">Monthly Revenue</p>
+<h3 class="text-headline-md font-headline-md text-on-surface">रू 4.2M</h3>
+</div>
+</div>
+</div>
+<!-- Charts & Widget Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Large Revenue Growth Chart -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl">
+<div class="flex justify-between items-center mb-stack-lg">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Revenue Growth</h4>
+<div class="flex space-x-2">
+<button class="px-3 py-1 bg-primary text-on-primary text-label-sm font-label-sm rounded-full">6 Months</button>
+<button class="px-3 py-1 text-on-surface-variant text-label-sm font-label-sm rounded-full hover:bg-surface-container">1 Year</button>
+</div>
+</div>
+<div class="chart-container">
+<canvas id="revenueChart"></canvas>
+</div>
+</div>
+<!-- Lawyer Verification Sidebar -->
+<div class="space-y-gutter">
+<!-- Lawyer Verification Widget -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl">
+<div class="flex justify-between items-center mb-stack-md">
+<h4 class="font-label-md text-label-md font-bold text-on-surface">Lawyer Verification</h4>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">3 Pending</span>
+</div>
+<div class="space-y-3">
+<div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center font-bold text-primary text-xs">AK</div>
+<div class="ml-3">
+<p class="font-label-sm text-label-sm text-on-surface">Anjali Karki</p>
+<p class="text-[10px] text-on-surface-variant">Corporate Law</p>
+</div>
+</div>
+<button class="text-primary hover:bg-primary/10 p-1 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim flex items-center justify-center font-bold text-tertiary text-xs">RB</div>
+<div class="ml-3">
+<p class="font-label-sm text-label-sm text-on-surface">Rohan Basnet</p>
+<p class="text-[10px] text-on-surface-variant">Criminal Defense</p>
+</div>
+</div>
+<button class="text-primary hover:bg-primary/10 p-1 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed-dim flex items-center justify-center font-bold text-secondary text-xs">SM</div>
+<div class="ml-3">
+<p class="font-label-sm text-label-sm text-on-surface">Sita Magar</p>
+<p class="text-[10px] text-on-surface-variant">Family Law</p>
+</div>
+</div>
+<button class="text-primary hover:bg-primary/10 p-1 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<button class="w-full mt-4 py-2 border border-primary text-primary font-label-sm text-label-sm rounded-lg hover:bg-primary-container/5 transition-colors">View All Applications</button>
+</div>
+<!-- System Status Sidebar -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl">
+<h4 class="font-label-md text-label-md font-bold text-on-surface mb-stack-md">System Status</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-secondary text-lg mr-2">hub</span>
+<span class="font-label-sm text-label-sm text-on-surface">API Gateway</span>
+</div>
+<div class="flex items-center">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse mr-2"></span>
+<span class="text-[11px] font-bold text-secondary">HEALTHY</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-secondary text-lg mr-2">description</span>
+<span class="font-label-sm text-label-sm text-on-surface">Doc Parser</span>
+</div>
+<div class="flex items-center">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse mr-2"></span>
+<span class="text-[11px] font-bold text-secondary">HEALTHY</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-error text-lg mr-2">database</span>
+<span class="font-label-sm text-label-sm text-on-surface">DB Instance</span>
+</div>
+<div class="flex items-center">
+<div class="px-2 py-0.5 bg-error-container text-on-error-container rounded text-[9px] font-bold">LATENCY HIGH</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/30">
+<p class="text-[10px] text-on-surface-variant flex items-center italic">
+<span class="material-symbols-outlined text-xs mr-1">history</span>
+                                Last updated: 2 mins ago
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Audit Log Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-stack-lg border-b border-outline-variant flex justify-between items-center">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Recent Activity Audit Log</h4>
+<button class="text-primary font-label-md text-label-md hover:underline">Export Logs</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-stack-lg py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Timestamp</th>
+<th class="px-stack-lg py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">User / Admin</th>
+<th class="px-stack-lg py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Action</th>
+<th class="px-stack-lg py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Entity</th>
+<th class="px-stack-lg py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface">Oct 30, 14:24:05</td>
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface">Admin_Samir</td>
+<td class="px-stack-lg py-4 font-label-md text-label-md text-primary">Lawyer_Verify_Success</td>
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface-variant">L-90234 (B. Gurung)</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-fixed text-on-secondary-fixed">Verified</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface">Oct 30, 13:12:44</td>
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface">System_Automator</td>
+<td class="px-stack-lg py-4 font-label-md text-label-md text-primary">Doc_Parse_Completed</td>
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface-variant">CASE-7712.pdf</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-fixed text-on-secondary-fixed">Processed</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface">Oct 30, 12:05:12</td>
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface">Lawyer_S_Magar</td>
+<td class="px-stack-lg py-4 font-label-md text-label-md text-primary">Payment_Initiated</td>
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface-variant">INV-2023-112</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-tertiary-fixed text-on-tertiary-fixed">Pending</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface">Oct 30, 11:45:30</td>
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface">Admin_Deepa</td>
+<td class="px-stack-lg py-4 font-label-md text-label-md text-primary">Admin_Config_Update</td>
+<td class="px-stack-lg py-4 font-body-sm text-body-sm text-on-surface-variant">Global_Security_Policy</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-fixed text-on-secondary-fixed">Applied</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-stack-md bg-surface-container-low flex items-center justify-between border-t border-outline-variant">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Showing 4 of 1,280 logs</p>
+<div class="flex space-x-2">
+<button class="p-1 border border-outline-variant rounded hover:bg-surface-container transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-1 border border-outline-variant rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB (Suppressed based on logic for Dashboard page generally, but often kept on main dashboards if it matches primary intent) -->
+<!-- The prompt doesn't specify a FAB, so we adhere to "Contextual FAB Suppression" for a pure dashboard overview unless 'Add Admin' or similar is critical -->
+<script>
+        // Revenue Chart Implementation
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                datasets: [{
+                    label: 'Revenue (in Millions NPR)',
+                    data: [2.8, 3.1, 3.5, 3.2, 3.9, 4.2],
+                    borderColor: '#1E40AF',
+                    backgroundColor: 'rgba(30, 64, 175, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#1E40AF',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: '#111827',
+                        titleFont: { family: 'Inter', size: 12 },
+                        bodyFont: { family: 'Inter', size: 12 },
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#F1F5F9'
+                        },
+                        ticks: {
+                            callback: function(value) { return 'रू ' + value + 'M'; },
+                            font: { family: 'Inter', size: 11 }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: { family: 'Inter', size: 11 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Toggle mobile sidebar (simplified for this demo)
+        window.addEventListener('resize', () => {
+            const sidebar = document.querySelector('aside');
+            if (window.innerWidth < 1024) {
+                // sidebar logic...
+            }
+        });
+    </script>
+</body></html>
