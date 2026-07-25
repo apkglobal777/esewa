@@ -1,0 +1,63 @@
+.logo-cloud {
+  background: var(--color-surface-container-low);
+  border-top: 1px solid var(--color-outline-variant);
+  border-bottom: 1px solid var(--color-outline-variant);
+  padding: var(--sp-10) 0;
+  overflow: hidden;
+}
+
+.logo-cloud__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-6);
+}
+
+.logo-cloud__label {
+  color: var(--color-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+/* Marquee container */
+.logo-cloud__track {
+  display: flex;
+  gap: var(--sp-12);
+  align-items: center;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+.logo-cloud__track:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.logo-cloud__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+  cursor: default;
+  transition: all var(--dur-med) var(--ease-out);
+  filter: grayscale(100%) opacity(0.45);
+}
+.logo-cloud__item:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.04);
+}
+
+.logo-cloud__icon {
+  color: var(--color-primary);
+  font-size: 22px;
+}
+
+.logo-cloud__name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-primary);
+  letter-spacing: 0.05em;
+}
