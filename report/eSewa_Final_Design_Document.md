@@ -1,4 +1,4 @@
-# eSahayak Platform - Final Design Document
+# eSewa Platform - Final Design Document
 
 **Version:** 1.0  
 **Date:** July 24, 2026  
@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary
 
-eSahayak is an AI-powered legal assistance platform operating within strict Indian regulatory constraints. The platform follows a **neutral directory model** combined with **document utility services**, ensuring full compliance with Bar Council of India (BCI) regulations while providing accessible legal document generation and consultation facilitation.
+eSewa is an AI-powered legal assistance platform operating within strict Indian regulatory constraints. The platform follows a **neutral directory model** combined with **document utility services**, ensuring full compliance with Bar Council of India (BCI) regulations while providing accessible legal document generation and consultation facilitation.
 
 **Compliance Position:** Zero solicitation, neutral directory, no fee-splitting, no algorithmic lawyer matching.
 
