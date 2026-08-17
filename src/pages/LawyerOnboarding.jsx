@@ -124,7 +124,11 @@ function StepCredentials({ onNext, onBack }) {
   const toggleArea = (id) => {
     setSelectedAreas(prev => {
       const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
       return next;
     });
   };
@@ -542,8 +546,6 @@ function StepDocuments({ onNext, onBack }) {
 
   const handleUpload = (id, name) => setUploads(p => ({ ...p, [id]: name }));
 
-  const allDone = Object.values(uploads).every(Boolean);
-
   const handleContinue = () => {
     setSubmitting(true);
     setTimeout(() => { setSubmitting(false); onNext(); }, 1500);
@@ -655,7 +657,7 @@ const TIMELINE = [
   { label: 'Final Approval',          sub: 'Access will be granted via email notification', active: false, dim: true  },
 ];
 
-function StepFinish({ onBack }) {
+function StepFinish() {
   const navigate = useNavigate();
 
   return (
@@ -782,7 +784,6 @@ function StepPlaceholder({ label, icon, onNext, onBack, isLast }) {
    ══════════════════════════════════ */
 export default function LawyerOnboarding() {
   const [activeStep, setActiveStep] = useState(0);
-  const navigate = useNavigate();
 
   const goNext = () => setActiveStep(s => Math.min(s + 1, STEPS.length - 1));
   const goBack = () => setActiveStep(s => Math.max(s - 1, 0));
@@ -820,7 +821,7 @@ export default function LawyerOnboarding() {
     if (activeStep === 1) return <StepCredentials onNext={goNext} onBack={goBack} />;
     if (activeStep === 2) return <StepIdentity onNext={goNext} onBack={goBack} />;
     if (activeStep === 3) return <StepDocuments onNext={goNext} onBack={goBack} />;
-    if (activeStep === 4) return <StepFinish onBack={goBack} />;
+    if (activeStep === 4) return <StepFinish />;
     return (
       <StepPlaceholder
         label={stepInfo.label}
