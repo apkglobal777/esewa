@@ -1,0 +1,67 @@
+/* Custom Styles for Lawyer Professional Suite Panel */
+
+.lawyer-panel-body {
+  background-color: #f9f9ff;
+  color: #141b2b;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.bento-card {
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-card:hover {
+  border-color: #3755c3;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.glass-header {
+  backdrop-filter: blur(8px);
+  background: rgba(249, 249, 255, 0.8);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid #E5E7EB;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.chart-bar {
+  transition: height 0.6s ease-out;
+}
+
+.chart-bar:hover {
+  filter: brightness(1.1);
+}
+
+.case-row:hover {
+  background-color: #f1f3ff;
+  transition: background-color 0.2s ease;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #c4c5d5;
+}
